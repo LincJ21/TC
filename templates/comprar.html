@@ -1,7 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Registro de Usuario</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Telecommunication Company</title>
+    <!-- Agrega la CDN de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .imagen-personalizada {
+        width: 65px; /* Cambia el ancho según tus necesidades */
+        height: 45px; /* Cambia el alto según tus necesidades */
+        /* Otras propiedades de estilo, como márgenes o bordes, si es necesario */
+        }
+
+        /* Estilo personalizado para la barra horizontal negra en la parte superior */
+        .top-bar {
+            background-color: black;
+            height: 55px;
+        }
+        /* Estilo personalizado para la barra de navegación transparente */
+        .navbar {
+            background-color: transparent !important;
+            margin-top: 20px; /* Alinea el contenido debajo de la barra negra */
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+        }
+
+        /* Estilo para cambiar el color del texto de los botones a negro */
+        .navbar-dark .navbar-nav .nav-link {
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            color: #000 !important; /* Cambia el color del texto a negro */
+            margin-right: 20px; /* Aumenta la separación entre los botones */
+            margin-left: 20px;
+            position: relative;
+        }
+        /* Estilo personalizado para la barra de navegación fija */
+        .custom-navbar {
+        position: static;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.8); /* Cambia el fondo a un color semi-transparente si deseas */
+        }
+
+        .black-bar {
+            background-color: black;
+            height: 3px;
+            margin-bottom: 20px;
+            max-width: 1100px; /* Ancho máximo */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+        }
+
+        .white-bar {
+            background-color: white;
+            height: 1px;
+            margin-bottom: 20px;
+            max-width: 1100px; /* Ancho máximo */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+        }
+
+        /* Estilo para la barra amarilla */
+        .yellow-bar {
+            background-color: #FFE03D;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: row; /* Alinea los elementos horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            justify-content: space-between; /* Distribuye los elementos uniformemente */
+            max-width: 700px; /* Ancho máximo de la barra amarilla */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+        }
+
+        /* Estilo para el contenedor de los botones y separadores */
+        .button-separator {
+            width: 2px; /* Ancho del separador */
+            height: 50px; /* Grosor del separador */
+            background-color: black; /* Color del separador */
+            display: inline-block; /* Hace que el separador se comporte como un elemento en línea */
+        }
+
+        /* Estilo para el contenedor de botones */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo para los botones personalizados */
+        .custom-button {
+            background-color: white; /* Color de fondo */
+            border: none; /* Sin borde */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+            padding: 40px; /* Espaciado interior */
+            margin: 30px; /* Espaciado exterior */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: transform 0.2s ease-in-out; /* Transición suave al escalar al pasar por encima */
+            height: 100px;
+        }
+
+        /* Estilo para las imágenes dentro de los botones */
+        .custom-button img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Efecto de escala al pasar por encima del botón */
+        .custom-button:hover {
+            transform: scale(1.05); /* Escala el botón al 105% de su tamaño original */
+        }
+
+         /* Estilo para el botón superpuesto */
+        .overlay-button {
+            background-color: #FFE03D;
+            top: auto;
+            left: auto;
+            height: auto;
+            width: auto;
+        }
+        /* Estilo para el cuadrado con borde amarillo */
+        .yellow-border {
+            border: 2px solid #FFE03D;
+        }
+        /* Estilo para el cuadrado con borde negro */
+        .black-border {
+            border: 1px solid #333333;
+        }
+        .black-background {
+            background-color: #333333;
+        }
+        .yellow-background {
+            background-color: #FFE03D;
+        }
+        .yellow-text {
+            color: #FFE03D;
+        }
+
+    </style>
 </head>
 <body>
     <h2>REGISTRARSE</h2>
@@ -10,9 +151,7 @@
             <input type="text" name="name" placeholder="Nombre" required>
             <input type="text" name="ape" placeholder="Apellido" required>
             <input type="text" name="email" placeholder="Correo" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <input type="password" name="confirm-password" placeholder="Confirmar Contraseña" required>
-            <button type="submit" class="btn btn-light my-3">Registrarse</button>
+            <button type="submit" class="btn btn-light my-3">Comprar</button>
         </form>
         {% if error %}
         <p style="color: red;">{{ error }}</p>

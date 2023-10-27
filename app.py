@@ -50,11 +50,11 @@ def guardar_datos_user(data):
 
 
 @app.post('/register')
-async def register_users(request: Request,id: int = Form(...),name: str = Form(...), ape: str = Form(...),email: str = Form(...),password: str = Form(...)):
+async def register_users(request: Request,id: int = Form(...),name: str = Form(...), ape: str = Form(...),email: str = Form(...)):
     user_data = cargar_datos_user()
     user = next((item for item in user_data if item.get("id") == id), None)
     if user:
-        return templates.TemplateResponse("registro.html", {"request": request, "error": "Usuario ya registrado", "success": None})
+        return templates.TemplateResponse("comprar.html", {"request": request, "error": "Usuario ya registrado", "success": None})
 
     else:
         new_user = {
@@ -62,15 +62,14 @@ async def register_users(request: Request,id: int = Form(...),name: str = Form(.
             "name": name,
             "ape": ape,
             "email": email,
-            "password": password
         }
         user_data.append(new_user)
         guardar_datos_user(user_data)
-    return templates.TemplateResponse("registro.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
+    return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
-    return templates.TemplateResponse('registrar.html', {"request": request})
+    return templates.TemplateResponse('comprar.html', {"request": request})
 
 if __name__ == "__main__":
     uvicorn.run('app:app')
