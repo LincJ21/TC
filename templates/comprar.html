@@ -145,20 +145,87 @@
     </style>
 </head>
 <body>
-    <h2>REGISTRARSE</h2>
-        <form action="/register" method="post">
-            <input type="text" name="id" placeholder="Cedula" required>
-            <input type="text" name="name" placeholder="Nombre" required>
-            <input type="text" name="ape" placeholder="Apellido" required>
-            <input type="text" name="email" placeholder="Correo" required>
-            <button type="submit" class="btn btn-light my-3">Comprar</button>
-        </form>
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-        {% endif %}
-        {% if success %}
-        <p style="color: green;">{{ success }}</p>
-        <a href="/loggin" class="btn btn-outline-success">Iniciar sesión</a>
-        {% endif %}
+<!-- Barra horizontal negra en la parte superior -->
+<nav class="top-bar fixed-top custom-navbar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4"> <!-- Columna para el logotipo -->
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url_for('static', path='imagenes/logo 03.png') }}" alt="Logo de la Empresa" class="imagen-personalizada">
+                </a>
+            </div>
+            <div class="col-md-8"> <!-- Columna para el formulario de búsqueda y el mensaje -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-#FFE03D">
+                        <p class="m-0"><span class="text-warning">Cámbiate a Telecommunication Company</span></p>
+                    </div>
+                    <form class="form-inline my-2 my-lg-0 ml-auto">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
+                        <button id="inicio_sesion-link" class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="inicio_sesion.html">Iniciar Sesion</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <!-- Barra de Navegación Transparente -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a id="hogar-link" class="nav-link" href="#">Hogar</a>
+                </li>
+                <li class="nav-item">
+                    <a id="servicios-link" class="nav-link" href="#">Servicios</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cobertura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ayuda</a>
+                </li>
+                <li class="nav-item">
+                    <a id="perfil-link" class="nav-link" href="#">Mi Cuenta</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="black-bar"></div>
+    <div class="col-md-4 container mt-4">
+        <h2>COMPRAR</h2>
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <input type="text" name="id" placeholder="Cedula" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="ape" placeholder="Apellido" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="email" placeholder="Correo" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-light my-3">Comprar</button>
+                </div>
+            </form>
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            {% if success %}
+            <p style="color: green;">{{ success }}</p>
+            <a href="/loggin" class="btn btn-outline-success">Iniciar sesión</a>
+            {% endif %}
+    </div>
+    
 </body>
 </html>
