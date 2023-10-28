@@ -21,52 +21,61 @@ app.add_middleware(
 )
 
 
-json_file_path = "data/comprar.json"
+json_compras = "data/compras.json"
 json_file_user = "data/usuarios.json"
 
 
 def cargar_datos():
     try:
-        with open(json_file_path, 'r') as json_file:
-            return json.load(json_file) #citas
+        with open(json_file_user, 'r') as json_file:
+            return json.load(json_file)
     except FileNotFoundError:
         return []
 
 
-def cargar_datos_user():
+def cargar_datos_buy():
     try:
-        with open(json_file_user, 'r') as json_file:
-            return json.load(json_file) #usuarios
+        with open(json_compras, 'r') as json_file:
+            return json.load(json_file)
     except FileNotFoundError:
         return []
 
 
 def guardar_datos(data):
-    with open(json_file_path, 'w') as json_file:
-        json.dump(data, json_file) #citas
-
-
-def guardar_datos_user(data):
     with open(json_file_user, 'w') as json_file:
-        json.dump(data, json_file) #usuarios
+        json.dump(data, json_file)
+
+
+def guardar_datos_buy(data):
+    with open(json_compras, 'w') as json_file:
+        json.dump(data, json_file)
 
 
 @app.post('/register')
-async def register_users(request: Request,id: int = Form(...),name: str = Form(...), ape: str = Form(...),email: str = Form(...)):
-    user_data = cargar_datos_user()
-    user = next((item for item in user_data if item.get("id") == id), None)
-    if user:
+async def register_users(request: Request,id: int = Form(...),
+                         name: str = Form(...), 
+                         ape: str = Form(...),
+                         email: str = Form(...), 
+                         numero_tarjeta: str = Form(...),
+                         fecha_expiracion: str = Form(...),
+                         codigo_seguridad: str = Form(...)):
+    buy_data = cargar_datos_buy()
+    buy = next((item for item in buy_data if item.get("id") == id), None)
+    if buy:
         return templates.TemplateResponse("comprar.html", {"request": request, "error": "Usuario ya registrado", "success": None})
 
     else:
-        new_user = {
+        new_buy = {
             "id":id,
             "name": name,
             "ape": ape,
             "email": email,
+            "numero_tarjeta": numero_tarjeta,
+            "fecha_expiracion": fecha_expiracion,
+            "codigo_seguridad": codigo_seguridad,
         }
-        user_data.append(new_user)
-        guardar_datos_user(user_data)
+        buy_data.append(new_buy)
+        guardar_datos_buy(buy_data)
     return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
 
 @app.get("/", response_class=HTMLResponse)
