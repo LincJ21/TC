@@ -101,5 +101,9 @@ def index(request: Request):
     buy_data=cargar_datos_buy()
     return templates.TemplateResponse('listacompras.html', {"request": request, "buy_data": buy_data})
 
+@app.get("/about", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse('about.html', {"request": request})
+
 if __name__ == "__main__":
     uvicorn.run('app:app')

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Acerca de nuestra aplicación</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .imagen-personalizada {
+            width: 150px; /* Cambia el ancho según tus necesidades */
+            height: 150px; /* Cambia el alto según tus necesidades */
+            /* Otras propiedades de estilo, como márgenes o bordes, si es necesario */
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="color">
+             <div class="Telecommunication"> 
+                <h2>Telecommunication</h2>
+                  <div class="tamanio">
+                         <p class="imagen">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, accusamus placeat! Tempora alias, iste enim earum atque fugit nobis corporis perferendis ex. Maiores ducimus tempora inventore. Ipsa, adipisci nemo! Assumenda laborum accusamus quos. Voluptatem modi quaerat, suscipit, obcaecati sequi harum fugit odit voluptatibus consequatur sit blanditiis delectus ea ex consectetur numquam tempore non totam. Recusandae ab totam alias numquam ex porro, earum veritatis doloremque laudantium veniam consequuntur perferendis? Nisi quae exercitationem sequi, quos cumque minima. Necessitatibus maxime eaque voluptatem molestiae doloremque mollitia delectus. Iusto rem voluptas nemo soluta enim eaque.</p>
+                    </div>
+                </div>
+            </div>
+                <div class="mision" >
+                    <h3>Misión</h3>
+                    <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi numquam repudiandae ab cupiditate sunt quidem suscipit dolores expedita asperiores pariatur, ipsa minima veritatis, rerum consequatur optio voluptates officia quis dignissimos!</p>
+               </div>
+            <div class="vision">
+                    <h3>Visión</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit unde necessitatibus atque eum aliquam quas! Rem debitis similique delectus neque accusamus! Numquam qui temporibus officiis minima eaque odio alias in!</p>
+              </div>
+              
+              <div style="margin-top: 50px; margin: 50px; text-align:justify">
+                <h3>Qué hacemos</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis labore, dolores ullam quam, molestias porro quod accusamus minima, sint quia maiores voluptatum autem eligendi explicabo pariatur vero natus provident commodi?</p>
+            </div>
+
+            <div style="margin-top: 50px; margin: 50px; text-align: justify">
+                <h3>Contacto</h3>
+                <p>Puedes contactarnos en Telekomu@gmail.com</p>
+                <h5>Nuestro equipo está conformado por: </h5>
+
+            </div>
+                <div class="row" style="margin-top: 50px; margin: 50px;">
+                    <div class="col-md-4 profile-card">
+                        <img src="{{ url_for('static', path='imagenes/Perfil_josue.jpg') }}" alt="Nombre del integrante" class="imagen-personalizada">
+                        <h6>Josue Torres</h6>
+
+                        <p> Cummaster</p>
+    
+                        <a href="/integrante1">Más</a>
+                    </div>
+                    <div class="col-md-4 profile-card">
+                        <img src="{{ url_for('static', path='imagenes/Perfil_cesar.jpg') }}" alt="Nombre del integrante" class="imagen-personalizada">
+                        <h6>Cesar Salas</h6>
+                        <p>Excummaster</p>
+                        <a href="/integrante2">Más</a>
+                    </div>
+                    <div class="col-md-4 profile-card">
+                        <img src="{{ url_for('static', path='imagenes/Perfil_carlos.png') }}" alt="Nombre del integrante" class="imagen-personalizada">
+                        <h6>Carlos Rodriguez</h6>
+                        <p>Sexcummaster</p>
+                        <a href="/integrante3">Más</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+
+</html>
+
+<style>
+    .container {
+            margin-top: 100px;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: justify;
+            margin:50px  
+        }
+
+        .tamanio {
+            text-align: left;
+            max-width: 90%;
+            color: white;
+            display:flex;
+            text-align: justify;
+            
+
+        }
+
+        .color{
+        background-color: rgba(137, 77, 184, 1);
+        padding: 10px; 
+        width: 90%; 
+        margin: 50px; 
+        color: white;
+        text-align: justify;
+    }
+
+    .mision {
+        max-width: 90%;
+       margin-top: 50px;
+       margin: 50px; 
+       text-align: left;
+       text-align: justify;
+    
+       
+    }
+
+    .vision{
+       max-width: 90%;
+       margin-top: 50px;
+       margin: 50px; 
+       text-align: left;
+       text-align: justify;
+    }
+
+   .fondo{
+
+     background-image: url("https://i.postimg.cc/mDm3cMR7/Rectangle-49-2.png");
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-size: cover;
+     padding: 10px; 
+     width: 90%; 
+     margin: 0; 
+     color:rgb(28, 30, 30)
+
+
+   }
+
+</style>
