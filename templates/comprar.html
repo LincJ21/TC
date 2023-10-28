@@ -169,7 +169,7 @@
         </div>
     </div>
 </nav>
-    <!-- Barra de Navegación Transparente -->
+<!-- Barra de Navegación Transparente -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-navbar">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -178,20 +178,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a id="hogar-link" class="nav-link" href="#">Hogar</a>
+                    <a id="hogar-link" class="nav-link" href="/home">Hogar</a>
                 </li>
                 <li class="nav-item">
-                    <a id="servicios-link" class="nav-link" href="#">Servicios</a>
+                    <a id="servicios-link" class="nav-link" href="/servicios">Servicios</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cobertura</a>
+                    <a class="nav-link" href="/cobertura">Cobertura</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Ayuda</a>
+                    <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a id="perfil-link" class="nav-link" href="#">Mi Cuenta</a>
+                    <a id="perfil-link" class="nav-link" href="/mi_cuenta">Mi Cuenta</a>
                 </li>
             </ul>
         </div>
@@ -240,14 +240,8 @@
             {% endif %}
             {% if success %}
             <p style="color: green;">{{ success }}</p>
-            <button onclick="redirigir()" class="btn btn-outline-success">Ver Compras</button>
             {% endif %}
     </div>
-    
-    <script>
-        function redirigir() {
-            window.location.href = '/listacompras';}
-    </script>
 
 </body>
 </html>

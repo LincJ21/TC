@@ -94,7 +94,7 @@ async def delete_users(request: Request,id: int):
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
-    return templates.TemplateResponse('comprar.html', {"request": request})
+    return templates.TemplateResponse('home.html', {"request": request})
 
 @app.get("/listacompras", response_class=HTMLResponse)
 def index(request: Request):
@@ -104,6 +104,18 @@ def index(request: Request):
 @app.get("/about", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse('about.html', {"request": request})
+
+@app.get("/servicios", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse('servicios.html', {"request": request})
+
+@app.get("/comprar", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse('comprar.html', {"request": request})
+
+@app.get("/home", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse('home.html', {"request": request})
 
 if __name__ == "__main__":
     uvicorn.run('app:app')

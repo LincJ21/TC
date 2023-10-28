@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio-Telecommunication Company</title>
+    <title>Servicios-Telecommunication Company</title>
     <!-- Agrega la CDN de Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -11,6 +11,17 @@
         width: 65px; /* Cambia el ancho según tus necesidades */
         height: 45px; /* Cambia el alto según tus necesidades */
         /* Otras propiedades de estilo, como márgenes o bordes, si es necesario */
+        }
+        .imagen-personalizada2 {
+        width: 150px; /* Cambia el ancho según tus necesidades */
+        height: 100px; /* Cambia el alto según tus necesidades */
+        
+        /* Otras propiedades de estilo, como márgenes o bordes, si es necesario */
+        }
+        
+        .darkened-background {
+        background-color: rgba(197, 197, 197, 0.8); /* Cambia el fondo a un color semi-transparente si deseas */
+        padding: 50px;
         }
 
         /* Estilo personalizado para la barra horizontal negra en la parte superior */
@@ -46,15 +57,14 @@
         background-color: rgba(0, 0, 0, 0.8); /* Cambia el fondo a un color semi-transparente si deseas */
         }
 
+
         .black-bar {
             background-color: black;
             height: 3px;
-            margin-bottom: 20px;
             max-width: 1100px; /* Ancho máximo */
             margin-left: auto; /* Centra horizontalmente */
-            margin-right: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
         }
-
         .white-bar {
             background-color: white;
             height: 1px;
@@ -87,6 +97,12 @@
         }
 
         /* Estilo para el contenedor de botones */
+        .button-separator {
+            width: 2px; /* Ancho del separador */
+            height: 50px; /* Grosor del separador */
+            background-color: black; /* Color del separador */
+            display: inline-block; /* Hace que el separador se comporte como un elemento en línea */
+        }
         .button-container {
             display: flex;
             justify-content: center;
@@ -98,7 +114,6 @@
             background-color: white; /* Color de fondo */
             border: none; /* Sin borde */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
-            padding: 40px; /* Espaciado interior */
             margin: 30px; /* Espaciado exterior */
             cursor: pointer; /* Cambia el cursor al pasar por encima */
             transition: transform 0.2s ease-in-out; /* Transición suave al escalar al pasar por encima */
@@ -141,7 +156,6 @@
         .yellow-text {
             color: #FFE03D;
         }
-
     </style>
 </head>
 <body>
@@ -169,6 +183,7 @@
         </div>
     </div>
 </nav>
+
 <!-- Barra de Navegación Transparente -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-navbar">
     <div class="container-fluid">
@@ -198,36 +213,38 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="black-bar"></div>
+
+<div class="black-bar"></div>
+
+<!-- Barra Amarilla -->
+<div class="yellow-bar">
+    <div class="button-separator"></div> <!-- Div para el separador -->
+    <button class="btn btn-transparent text-dark">Telefono</button>
+    <div class="button-separator"></div> <!-- Div para el separador -->
+    <button class="btn btn-transparent text-dark">Tv</button>
+    <div class="button-separator"></div> <!-- Div para el separador -->
+    <button class="btn btn-transparent text-dark">Internet</button>
+    <div class="button-separator"></div> <!-- Div para el separador -->
 </div>
 
-<!--Carrusel de imagenes-->
-<div class="container-fluid">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{{ url_for('static', path='imagenes/ImagenCarrusel1.png') }}" class="d-block w-100" alt="Carrusel1">
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', path='imagenes/ImagenCarrusel2.png') }}" class="d-block w-100" alt="Carrusel2">
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', path='imagenes/ImagenCarrusel3.png') }}" class="d-block w-100" alt="Carrusel3">
-        </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-        </a>
-    </div>
+<!-- Botones de plataformas de video -->
+<div class="button-container darkened-background">
+    <button class="custom-button">
+        <img src="{{ url_for('static', path='imagenes/Netflix icon.png') }}"  alt="Imagen 1"class="imagen-personalizada2">
+    </button>
+    <button class="custom-button">
+        <img src="{{ url_for('static', path='imagenes/disney+.png') }}" alt="Imagen 2" class="imagen-personalizada2">
+    </button>
+    <button class="custom-button">
+        <img src="{{ url_for('static', path='imagenes/hbo+.jpg') }}" alt="Imagen 3" class="imagen-personalizada2">
+    </button>
+    <button class="custom-button">
+        <img src="{{ url_for('static', path='imagenes/Paramount_Plus.webp') }}" alt="Imagen 4" class="imagen-personalizada2">
+    </button>
+    <button class="custom-button">
+        <img src="{{ url_for('static', path='imagenes/Prime_Video.png') }}"src="imagenes/Prime_Video.png" alt="Imagen 5" class="imagen-personalizada2">
+    </button>
 </div>
-
-
 
 <div class="container-lg my-5"></div>
 
@@ -258,7 +275,13 @@
                     <h6 class="info2 "><span class="text-danger">Claro</span> video con <span class="ilimitadas text-primary">HBO Max</span></h6>
                     <div class="white-bar"></div>
                     <div class="m-5"></div>
-                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
+                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3" onclick="mostrarMensaje()">CONTRATAR</a>
+
+                    <script>
+                        function mostrarMensaje() {
+                          alert("¡Has comprado el producto!");
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -282,7 +305,13 @@
                     <h6 class="info2 "><span class="text-danger">Claro</span> video con <span class="ilimitadas text-primary">HBO Max </span></h6>
                     <div class="white-bar"></div>
                     <div class="m-5"></div>
-                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
+                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3" onclick="mostrarMensaje()">CONTRATAR</a>
+
+                    <script>
+                        function mostrarMensaje() {
+                          alert("¡Has comprado el producto!");
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -306,7 +335,13 @@
                     <h6 class="info2 "><span class="text-danger">Claro</span> video con <span class="ilimitadas text-primary">HBO Max</span></h6>
                     <div class="white-bar"></div>
                     <div class="m-5"></div>
-                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
+                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3" onclick="mostrarMensaje()">CONTRATAR</a>
+
+                    <script>
+                        function mostrarMensaje() {
+                          alert("¡Has comprado el producto!");
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -330,7 +365,13 @@
                     <h6 class="info2 "><span class="text-danger">Claro</span> video con <span class="ilimitadas text-primary">HBO Max</span></h6>
                     <div class="white-bar"></div>
                     <div class="m-5"></div>
-                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
+                    <a href="/comprar" class="btn btn-outline-warning btn-lg mt-3" onclick="mostrarMensaje()">CONTRATAR</a>
+
+                    <script>
+                        function mostrarMensaje() {
+                          alert("¡Has comprado el producto!");
+                        }
+                    </script>
                 </div>
             </div>
         </div>
