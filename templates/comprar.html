@@ -233,15 +233,21 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-light my-3">Comprar</button>
                 </div>
+                <div><a href="/listacompras" class="btn btn-outline-success">Ver Compras</a></div>
             </form>
             {% if error %}
             <p style="color: red;">{{ error }}</p>
             {% endif %}
             {% if success %}
             <p style="color: green;">{{ success }}</p>
-            <a href="/loggin" class="btn btn-outline-success">Ver Comprar</a>
+            <button onclick="redirigir()" class="btn btn-outline-success">Ver Compras</button>
             {% endif %}
     </div>
     
+    <script>
+        function redirigir() {
+            window.location.href = '/listacompras';}
+    </script>
+
 </body>
 </html>

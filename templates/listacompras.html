@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+{% if success %}
+<div class="alert alert-success">{{ success }}</div>
+{% endif %}
+<body>
+    <div class="container mt-5">
+        <h2>Lista de Compras</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Número de Tarjeta</th>
+                    <th>Fecha de Expiración</th>
+                    <th>Código de Seguridad</th>
+                </tr>
+            </thead>
+            <tbody id="compras-table-body">
+                {% for buy in buy_data %}
+                <tr>
+                    <td>{{buy.id}}</td>                    
+                    <td>{{buy.name}}</td>
+                    <td>{{buy.ape}}</td>
+                    <td>{{buy.email}}</td>
+                    <td>{{buy.numero_tarjeta}}</td>
+                    <td>{{buy.fecha_expiracion}}</td>
+                    <td>{{buy.codigo_seguridad}}</td>
+                    <td>
+                        <a href="/delete/{{buy.id}}" class="btn btn-danger">Cancelar compra</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS y script para cargar datos desde compras.json -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

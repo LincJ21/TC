@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Form, Request
+from fastapi import FastAPI, HTTPException, Form, Request, Response
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
@@ -78,9 +78,28 @@ async def register_users(request: Request,id: int = Form(...),
         guardar_datos_buy(buy_data)
     return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
 
+@app.get('/delete/{id}')
+async def delete_users(request: Request,id: int):
+    buy_data = cargar_datos_buy()
+    buy = next((item for item in buy_data if item.get("id") == id), None)
+    
+    if buy:
+        buy_data.remove(buy)
+        guardar_datos_buy(buy_data)
+        
+        return templates.TemplateResponse("listacompras.html",{"request": request,"buy_data": buy_data,"success": "¡Compra cancelada!"})
+    else:
+        return templates.TemplateResponse("listacompras.html",{"request": request,"buy_data": buy_data,"ERROR": "¡Compra no encontrada!"})
+    
+
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse('comprar.html', {"request": request})
+
+@app.get("/listacompras", response_class=HTMLResponse)
+def index(request: Request):
+    buy_data=cargar_datos_buy()
+    return templates.TemplateResponse('listacompras.html', {"request": request, "buy_data": buy_data})
 
 if __name__ == "__main__":
     uvicorn.run('app:app')
