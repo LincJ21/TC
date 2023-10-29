@@ -164,5 +164,9 @@ def inicio_sesion(request: Request):
 def registrar_usuario(request: Request):
     return templates.TemplateResponse('registro_usuario.html', {"request": request})
 
+@app.get("/mi_cuenta", response_class=HTMLResponse)
+def mi_cuenta(request: Request):
+    return templates.TemplateResponse('mi_cuenta.html', {"request": request})
+
 if __name__ == "__main__":
-    uvicorn.run('app:app')
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
