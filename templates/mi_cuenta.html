@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio-Telecommunication Company</title>
+    <!-- Agrega la CDN de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .imagen-personalizada {
+        width: 65px; /* Cambia el ancho según tus necesidades */
+        height: 45px; /* Cambia el alto según tus necesidades */
+        /* Otras propiedades de estilo, como márgenes o bordes, si es necesario */
+        }
+
+        /* Estilo personalizado para la barra horizontal negra en la parte superior */
+        .top-bar {
+            background-color: black;
+            height: 55px;
+        }
+        /* Estilo personalizado para la barra de navegación transparente */
+        .navbar {
+            background-color: transparent !important;
+            margin-top: 20px; /* Alinea el contenido debajo de la barra negra */
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+        }
+
+        /* Estilo para cambiar el color del texto de los botones a negro */
+        .navbar-dark .navbar-nav .nav-link {
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            color: #000 !important; /* Cambia el color del texto a negro */
+            margin-right: 20px; /* Aumenta la separación entre los botones */
+            margin-left: 20px;
+            position: relative;
+        }
+        /* Estilo personalizado para la barra de navegación fija */
+        .custom-navbar {
+        position: static;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.8); /* Cambia el fondo a un color semi-transparente si deseas */
+        }
+
+        .black-bar {
+            background-color: black;
+            height: 3px;
+            margin-bottom: 20px;
+            max-width: 1100px; /* Ancho máximo */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+        }
+
+        .white-bar {
+            background-color: white;
+            height: 1px;
+            margin-bottom: 20px;
+            max-width: 1100px; /* Ancho máximo */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+        }
+
+        /* Estilo para la barra amarilla */
+        .yellow-bar {
+            background-color: #FFE03D;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: row; /* Alinea los elementos horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            justify-content: space-between; /* Distribuye los elementos uniformemente */
+            max-width: 700px; /* Ancho máximo de la barra amarilla */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+        }
+
+        /* Estilo para el contenedor de los botones y separadores */
+        .button-separator {
+            width: 2px; /* Ancho del separador */
+            height: 50px; /* Grosor del separador */
+            background-color: black; /* Color del separador */
+            display: inline-block; /* Hace que el separador se comporte como un elemento en línea */
+        }
+
+        /* Estilo para el contenedor de botones */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo para los botones personalizados */
+        .custom-button {
+            background-color: white; /* Color de fondo */
+            border: none; /* Sin borde */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+            padding: 40px; /* Espaciado interior */
+            margin: 30px; /* Espaciado exterior */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: transform 0.2s ease-in-out; /* Transición suave al escalar al pasar por encima */
+            height: 100px;
+        }
+
+        /* Estilo para las imágenes dentro de los botones */
+        .custom-button img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Efecto de escala al pasar por encima del botón */
+        .custom-button:hover {
+            transform: scale(1.05); /* Escala el botón al 105% de su tamaño original */
+        }
+
+         /* Estilo para el botón superpuesto */
+        .overlay-button {
+            background-color: #FFE03D;
+            top: auto;
+            left: auto;
+            height: auto;
+            width: auto;
+        }
+        /* Estilo para el cuadrado con borde amarillo */
+        .yellow-border {
+            border: 2px solid #FFE03D;
+        }
+        /* Estilo para el cuadrado con borde negro */
+        .black-border {
+            border: 1px solid #333333;
+        }
+        .black-background {
+            background-color: #333333;
+        }
+        .yellow-background {
+            background-color: #FFE03D;
+        }
+        .yellow-text {
+            color: #FFE03D;
+        }
+        /* Estilo personalizado para el perfil */
+        .profile-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .profile-cedula {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .profile-email {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .profile-button {
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!-- Barra horizontal negra en la parte superior -->
+<nav class="top-bar fixed-top custom-navbar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4"> <!-- Columna para el logotipo -->
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url_for('static', path='imagenes/logo 03.png') }}" alt="Logo de la Empresa" class="imagen-personalizada">
+                </a>
+            </div>
+            <div class="col-md-8"> <!-- Columna para el formulario de búsqueda y el mensaje -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-#FFE03D">
+                        <p class="m-0"><span class="text-warning">Cámbiate a Telecommunication Company</span></p>
+                    </div>
+                    <form class="form-inline my-2 my-lg-0 ml-auto">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
+                        <button id="inicio_sesion-link" class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="inicio_sesion.html">Iniciar Sesion</a></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Barra de Navegación Transparente -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a id="hogar-link" class="nav-link" href="/home">Hogar</a>
+                </li>
+                <li class="nav-item">
+                    <a id="servicios-link" class="nav-link" href="/servicios">Servicios</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/cobertura">Cobertura</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a id="perfil-link" class="nav-link" href="/mi_cuenta">Mi Cuenta</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="black-bar"></div>
+
+{% if success %}
+<div class="alert alert-success">{{ success }}</div>
+{% endif %}
+<div class="container mt-5">
+    <h2 class="text-center">Mi Cuenta</h2>
+    <img class="profile-image mx-auto d-block" src="{{ url_for('static', path='logo03.png') }}" alt="Foto de Perfil">
+    <form class="container md-4 text-center">
+        {% for data in user_data %}
+        <table class="table table-bordered">
+            <tr>
+                <th>CC:</th>
+                <td>{{ data.cc }}</td>
+            </tr>
+            <tr>
+                <th>Nombre:</th>
+                <td>{{ data.name }}</td>
+            </tr>
+            <tr>
+                <th>Apellido:</th>
+                <td>{{ data.ape }}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>{{ data.cell }}</td>
+            </tr>
+            <tr>
+                <th>Número de Tarjeta:</th>
+                <td>{{ data.gmail }}</td>
+            </tr>
+        </table>
+        {% endfor %}
+    </form>
+</div>
+</html>
+
+
+</body>
+</html>

@@ -92,14 +92,14 @@ async def delete_users(request: Request,id: int):
         return templates.TemplateResponse("listacompras.html",{"request": request,"buy_data": buy_data,"ERROR": "¡Compra no encontrada!"})
 
 @app.post('/login')
-async def login(request: Request, cc: int = Form(...), password: str = Form(...)):
+async def login(request: Request, cc: str = Form(...), password: str = Form(...)):
     request.cc = cc
     request.password = password
     user_data = cargar_datos()
     user = next((item for item in user_data if item.get("cc") == request.cc), None)
     if user:
         if user.get("password") == request.password:
-            return templates.TemplateResponse("home.html", {"request": request, "error": None, "success": "Bienvenido", "name": user["name"], "ape": user["ape"]})
+            return templates.TemplateResponse("mi_cuenta.html", {"request": request, "error": None, "success": "Bienvenido", "name": user["name"], "ape": user["ape"]})
         else:
             return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Contraseña incorrecta", "success": None})
     else:
@@ -120,9 +120,9 @@ async def register_users(request: Request,
 
     else:
         new_user = {
+            "cc": cc,
             "name": name,
             "ape": ape,
-            "cc": cc,
             "cell": cell,
             "email": email,
             "password": password,
