@@ -51,7 +51,7 @@ def guardar_datos_buy(data):
         json.dump(data, json_file)
 
 
-@app.post('/register')
+@app.post('/comprarP')
 async def register_users(request: Request,id: int = Form(...),
                          name: str = Form(...), 
                          ape: str = Form(...),
@@ -62,7 +62,7 @@ async def register_users(request: Request,id: int = Form(...),
     buy_data = cargar_datos_buy()
     buy = next((item for item in buy_data if item.get("id") == id), None)
     if buy:
-        return templates.TemplateResponse("comprar.html", {"request": request, "error": "Usuario ya registrado", "success": None})
+        return templates.TemplateResponse("comprar.html", {"request": request, "error": "Ya usted contrato el servicio", "success": None})
 
     else:
         new_buy = {
@@ -76,7 +76,7 @@ async def register_users(request: Request,id: int = Form(...),
         }
         buy_data.append(new_buy)
         guardar_datos_buy(buy_data)
-    return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
+    return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": "Compra registrada exitosamente"})
 
 @app.get('/delete/{id}')
 async def delete_users(request: Request,id: int):
@@ -90,7 +90,46 @@ async def delete_users(request: Request,id: int):
         return templates.TemplateResponse("listacompras.html",{"request": request,"buy_data": buy_data,"success": "¡Compra cancelada!"})
     else:
         return templates.TemplateResponse("listacompras.html",{"request": request,"buy_data": buy_data,"ERROR": "¡Compra no encontrada!"})
-    
+
+@app.post('/login')
+async def login(request: Request, cc: int = Form(...), password: str = Form(...)):
+    request.cc = cc
+    request.password = password
+    user_data = cargar_datos()
+    user = next((item for item in user_data if item.get("cc") == request.cc), None)
+    if user:
+        if user.get("password") == request.password:
+            return templates.TemplateResponse("home.html", {"request": request, "error": None, "success": "Bienvenido", "name": user["name"], "ape": user["ape"]})
+        else:
+            return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Contraseña incorrecta", "success": None})
+    else:
+        return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Usuario no encontrado", "success": None})
+
+@app.post('/registrar')
+async def register_users(request: Request,
+                         name: str = Form(...), 
+                         ape: str = Form(...),
+                         cc: str = Form(...),
+                         cell: str = Form(...),
+                         email: str = Form(...), 
+                         password: str = Form(...)):
+    user_data = cargar_datos()
+    data = next((item for item in user_data if item.get("cc") == cc), None)
+    if data:
+        return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Usuario ya registrado", "success": None})
+
+    else:
+        new_user = {
+            "name": name,
+            "ape": ape,
+            "cc": cc,
+            "cell": cell,
+            "email": email,
+            "password": password,
+        }
+        user_data.append(new_user)
+        guardar_datos(user_data)
+    return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
@@ -116,6 +155,14 @@ def index(request: Request):
 @app.get("/home", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse('home.html', {"request": request})
+
+@app.get("/inicio_sesion", response_class=HTMLResponse)
+def inicio_sesion(request: Request):
+    return templates.TemplateResponse('inicio_sesion.html', {"request": request})
+
+@app.get("/registro_usuario", response_class=HTMLResponse)
+def registrar_usuario(request: Request):
+    return templates.TemplateResponse('registro_usuario.html', {"request": request})
 
 if __name__ == "__main__":
     uvicorn.run('app:app')

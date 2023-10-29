@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar Telecommunication Company</title>
+    <title>Crear Usuario-Telecommunication Company</title>
     <!-- Agrega la CDN de Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -169,6 +169,7 @@
         </div>
     </div>
 </nav>
+
 <!-- Barra de Navegación Transparente -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-navbar">
     <div class="container-fluid">
@@ -178,10 +179,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a id="hogar-link" class="nav-link" href="/home">Hogar</a>
+                    <a class="nav-link" href="/home">Hogar</a>
                 </li>
                 <li class="nav-item">
-                    <a id="servicios-link" class="nav-link" href="/servicios">Servicios</a>
+                    <a class="nav-link" href="/servicios">Servicios</a>
                 </li>
 
                 <li class="nav-item">
@@ -191,7 +192,7 @@
                     <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a id="perfil-link" class="nav-link" href="/mi_cuenta">Mi Cuenta</a>
+                    <a class="nav-link" href="/mi_cuenta">Mi Cuenta</a>
                 </li>
             </ul>
         </div>
@@ -199,49 +200,59 @@
 </nav>
 
 <div class="black-bar"></div>
-    <div class="col-md-4 container mt-4">
-        <h2>COMPRAR</h2>
-            <form class="container md-4" action="/comprarP" method="post">
-                <label for="nombre">Cedula:</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="id" placeholder="Cedula" required>
-                </div>
-                <label for="nombre">Nombre:</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Nombre" required>
-                </div>
-                <label for="nombre">Apellido:</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="ape" placeholder="Apellido" required>
-                </div>
-                <label for="nombre">Correo:</label>
-                <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Correo" required>
-                </div>
-                <label for="numero_tarjeta">Número de Tarjeta:</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="numero_tarjeta" placeholder="Número de Tarjeta" required>
-                </div>
-                <label for="fecha_expiracion">Fecha de Expiración (MM/YY):</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="fecha_expiracion" placeholder="(MM/YY)" required>
-                </div>
-                <label for="codigo_seguridad">Código de Seguridad:</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="codigo_seguridad" placeholder="000" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-light my-3">Comprar</button>
-                </div>
-                <div><a href="/listacompras" class="btn btn-outline-success">Ver Compras</a></div>
-            </form>
-            {% if error %}
-            <p style="color: red;">{{ error }}</p>
-            {% endif %}
-            {% if success %}
-            <p style="color: green;">{{ success }}</p>
-            {% endif %}
-    </div>
+
+<div class="col-md-4 container mt-4">
+    <h2>Crear Usuario</h2>
+    <form class="container md-4" action="/registrar" method="post">
+        
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" name="name" placeholder="Ingrese su nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="form-control" name="ape" placeholder="Ingrese su apellido" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cedula">Cédula:</label>
+            <input type="text" class="form-control" name="cc" placeholder="Ingrese su número de cédula" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" class="form-control" name="cell" placeholder="Ingrese su número de teléfono" required>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" class="form-control" name="email" placeholder="Ingrese su correo electrónico" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmar contraseña">Confirmar Contraseña:</label>
+            <input type="password" class="form-control" name="confirm-password" placeholder="Confirmar Contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-light my-3">Registrarse</button>
+        </form>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+        <p style="color: green;">{{ success }}</p>
+        <a href="/inicio_sesion" class="btn btn-outline-success">Iniciar sesión</a>
+        {% endif %}
+</div>
+
+<div><h1></h1></div>
+
+<!-- Agrega la CDN de Bootstrap JS (jQuery y Popper.js son requeridos) -->
 
 </body>
 </html>
