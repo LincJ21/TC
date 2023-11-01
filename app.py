@@ -168,5 +168,9 @@ def registrar_usuario(request: Request):
 def mi_cuenta(request: Request):
     return templates.TemplateResponse('mi_cuenta.html', {"request": request})
 
+@app.get("/about_Josue", response_class=HTMLResponse)
+def about_Josue(request: Request):
+    return templates.TemplateResponse('about_Josue.html', {"request": request})
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
