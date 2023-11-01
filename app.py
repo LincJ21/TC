@@ -172,5 +172,9 @@ def mi_cuenta(request: Request):
 def about_Josue(request: Request):
     return templates.TemplateResponse('about_Josue.html', {"request": request})
 
+@app.get("/about_Cesar", response_class=HTMLResponse)
+def about_Josue(request: Request):
+    return templates.TemplateResponse('about_Cesar.html', {"request": request})
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
