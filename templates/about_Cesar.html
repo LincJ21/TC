@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio-Telecommunication Company</title>
-    <!-- Agrega la CDN de Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Perfil del Desarrollador</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .imagen-personalizada {
         width: 65px; /* Cambia el ancho según tus necesidades */
@@ -248,61 +247,30 @@
 <div class="container-fluid">
     <div class="black-bar"></div>
 </div>
-    <div class="container-fluid ">
-        <div class="yellow-background p-2">
-             <div class="Telecommunication"> 
-                <h2 class="text-dark">Telecommunication</h2>
-                  <div class="text-dark px-4 py-2 mx-5 my-2">
-                         <p class="imagen">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, accusamus placeat! Tempora alias, iste enim earum atque fugit nobis corporis perferendis ex. Maiores ducimus tempora inventore. Ipsa, adipisci nemo! Assumenda laborum accusamus quos. Voluptatem modi quaerat, suscipit, obcaecati sequi harum fugit odit voluptatibus consequatur sit blanditiis delectus ea ex consectetur numquam tempore non totam. Recusandae ab totam alias numquam ex porro, earum veritatis doloremque laudantium veniam consequuntur perferendis? Nisi quae exercitationem sequi, quos cumque minima. Necessitatibus maxime eaque voluptatem molestiae doloremque mollitia delectus. Iusto rem voluptas nemo soluta enim eaque.</p>
-                    </div>
-                </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{ url_for('static', path='imagenes/Perfil_cesar.jpg') }}" alt="Foto de perfil" class="img-fluid rounded-circle">
             </div>
-                <div class="mision" >
-                    <h3>Misión</h3>
-                    <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi numquam repudiandae ab cupiditate sunt quidem suscipit dolores expedita asperiores pariatur, ipsa minima veritatis, rerum consequatur optio voluptates officia quis dignissimos!</p>
-               </div>
-            <div class="vision">
-                    <h3>Visión</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit unde necessitatibus atque eum aliquam quas! Rem debitis similique delectus neque accusamus! Numquam qui temporibus officiis minima eaque odio alias in!</p>
-              </div>
-              
-              <div style="margin-top: 50px; margin: 50px; text-align:justify">
-                <h3>Qué hacemos</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis labore, dolores ullam quam, molestias porro quod accusamus minima, sint quia maiores voluptatum autem eligendi explicabo pariatur vero natus provident commodi?</p>
+            <div class="col-md-8">
+                <h1>César Fabricio Salas Ricaurte</h1>
+                <p><strong>Ubicación:</strong> Cartagena de Indias-Bolivar, Colombia</p>
+                <p><strong>Experiencia:</strong>Sinceramente este será el primer proyecto realista con respecto a un entorno de trabajo serio en la experiencia en que uno como futuro ingeniero de sistemas puede enfrentarse y saber desenvolverse, pero con lo que respecta a esta metodologia es bastante enriquecedora.</p>
+                <p><strong>Especialización:</strong></p>
+                <p>- Auxiliar de BackEnd</p>
+                <p>- Auxiliar de FrontEnd</p>
+                <p>- Gestión de calidad</p> 
+                <p>- Creatividad e innovación</p> 
+                <p><strong>Proyectos Destacados:</strong>Telecommunication Company</p>
             </div>
-
-            <div style="margin-top: 50px; margin: 50px; text-align: justify">
-                <h3>Contacto</h3>
-                <p>Puedes contactarnos en Telekomu@gmail.com</p>
-                <h5>Nuestro equipo está conformado por: </h5>
-
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <h2>Sobre Mí:</h2>
+                <p>
+                    Soy estudiante de ingeniería de sistemas y computación, de la Universidad Tecnológica de Bolívar, me interesa mucho el área de desarrollo y gestión de base de datos, además de explorar cada uno de las distintas áreas que me puede ofrecer esta carrera, además soy un amante de la música como músico y me encantan los video juegos :). 
             </div>
-                <div class="row" style="margin-top: 50px; margin: 50px;">
-                    <div class="col-md-4 profile-card">
-                        <img src="{{ url_for('static', path='imagenes/LincJ.jpg') }}" alt="Nombre del integrante" class="imagen-personalizada">
-                        <h6>Josue Torres</h6>
-
-                        <p> Cummaster</p>
-    
-                        <a href="/about_Josue">Más</a>
-                    </div>
-                    <div class="col-md-4 profile-card">
-                        <img src="{{ url_for('static', path='imagenes/Perfil_cesar.jpg') }}" alt="Nombre del integrante" class="imagen-personalizada">
-                        <h6>Cesar Salas</h6>
-                        <p>Excummaster</p>
-                        <a href="/about_Cesar">Más</a>
-                    </div>
-                    <div class="col-md-4 profile-card">
-                        <img src="{{ url_for('static', path='imagenes/Perfil_carlos.png') }}" alt="Nombre del integrante" class="imagen-personalizada">
-                        <h6>Carlos Rodriguez</h6>
-                        <p>Sexcummaster</p>
-                        <a href="/integrante3">Más</a>
-                    </div>
-                  </div>
-                </div>
-            </div>
-    
+        </div>
+    </div>
 </body>
-
 </html>
-
