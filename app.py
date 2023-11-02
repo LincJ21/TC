@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 import json, os
-from datetime import datetime
 import mysql.connector
 
 # Configura los detalles de la conexión a la base de datos MySQL
