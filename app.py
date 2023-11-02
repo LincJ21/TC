@@ -6,6 +6,18 @@ from fastapi.staticfiles import StaticFiles
 import uvicorn
 import json, os
 from datetime import datetime
+import mysql.connector
+
+# Configura los detalles de la conexión a la base de datos MySQL
+db_params = {
+    'host': 'roundhouse.proxy.rlwy.net',
+    'user': 'root',
+    'password': 'hbDF3dFC-2DagA2BGHFcg2-6bd1beE3c',
+    'database': 'railway',
+    'port': 51507 
+}
+
+
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -22,15 +34,42 @@ app.add_middleware(
 
 
 json_compras = "data/compras.json"
-json_file_user = "data/usuarios.json"
-
 
 def cargar_datos():
     try:
-        with open(json_file_user, 'r') as json_file:
-            return json.load(json_file)
-    except FileNotFoundError:
+        connection = mysql.connector.connect(**db_params)
+        cursor = connection.cursor(dictionary=True)
+
+        query = "SELECT * FROM usuarios"
+        cursor.execute(query)
+        result = cursor.fetchall()
+
+        cursor.close()
+        connection.close()
+
+        return result
+
+    except Exception as e:
+        print(f"Error al cargar datos de la base de datos: {e}")
         return []
+
+def guardar_datos(data):
+    try:
+        connection = mysql.connector.connect(**db_params)
+        cursor = connection.cursor()
+
+        # Ejecuta una serie de consultas SQL para insertar o actualizar los datos según corresponda
+        for item in data:
+            query = "INSERT INTO usuarios (cc, name, ape, cell, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
+            values = (item['cc'], item['name'], item['ape'], item['cell'], item['email'], item['password'])
+            cursor.execute(query, values)
+
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(f"Error al guardar datos en la base de datos: {e}")
 
 
 def cargar_datos_buy():
@@ -39,11 +78,6 @@ def cargar_datos_buy():
             return json.load(json_file)
     except FileNotFoundError:
         return []
-
-
-def guardar_datos(data):
-    with open(json_file_user, 'w') as json_file:
-        json.dump(data, json_file)
 
 
 def guardar_datos_buy(data):
@@ -98,12 +132,15 @@ async def login(request: Request, cc: str = Form(...), password: str = Form(...)
     user_data = cargar_datos()
     user = next((item for item in user_data if item.get("cc") == request.cc), None)
     if user:
+        # Usuario encontrado, ahora verifica la contraseña
         if user.get("password") == request.password:
             return templates.TemplateResponse("mi_cuenta.html", {"request": request, "error": None, "success": "Bienvenido", "name": user["name"], "ape": user["ape"]})
         else:
             return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Contraseña incorrecta", "success": None})
     else:
+        # Usuario no encontrado en la base de datos
         return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Usuario no encontrado", "success": None})
+
 
 @app.post('/registrar')
 async def register_users(request: Request,
@@ -181,4 +218,4 @@ def about_Josue(request: Request):
     return templates.TemplateResponse('about_Carlos.html', {"request": request})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+    uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", 8000)))
