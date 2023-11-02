@@ -4,3 +4,10 @@ jinja2
 python-multipart
 Gunicorn
 mysql.connector
+db_params = {
+    'host': 'roundhouse.proxy.rlwy.net',
+    'user': 'root',
+    'password': 'hbDF3dFC-2DagA2BGHFcg2-6bd1beE3c',
+    'database': 'railway',
+    'port': 51507 
+}
