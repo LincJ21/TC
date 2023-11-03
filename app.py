@@ -1,9 +1,8 @@
-from fastapi import FastAPI, HTTPException, Form, Request, Response
+from fastapi import FastAPI, HTTPException, Form, Request, Response,Depends
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from psycopg2.extras import RealDictCursor
 import uvicorn
 import json, os
 import psycopg2
@@ -31,26 +30,39 @@ app.add_middleware(
 
 json_compras = "data/compras.json"
 
-def cargar_datos():
+def cargar_datos(cc):
     try:
+        # Establecer la conexión a la base de datos usando los parámetros
         connection = psycopg2.connect(**db_params)
         cursor = connection.cursor()
 
-        # Cambia la consulta SQL para buscar un usuario por número de cédula y contraseña
-        query = "SELECT * FROM usuarios WHERE cc = %s AND password = %s"
-        cursor.execute(query)
+        # Cambia la consulta SQL para buscar un usuario por número de cédula
+        query = "SELECT cc, name, ape, cell, email FROM usuarios WHERE cc = %s"
+        cursor.execute(query, (cc,))
 
-        # Obtén el resultado
         user = cursor.fetchone()
+
+        if user:
+            user_cc, user_name, user_ape, user_cell, user_email = user
+        else:
+            user_cc, user_name, user_ape, user_cell, user_email = None, None, None, None, None
 
         cursor.close()
         connection.close()
 
-        return user
+        # Imprime los valores antes de retornarlos
+        print("user_cc:", user_cc)
+        print("user_name:", user_name)
+        print("user_ape:", user_ape)
+        print("user_cell:", user_cell)
+        print("user_email:", user_email)
 
     except Exception as e:
-        print(f"Error al cargar datos desde la base de datos: {e}")
-        return None
+        print(f"Error al realizar la consulta: {e}")
+        user_cc, user_name, user_ape, user_cell, user_email = None, None, None, None, None
+
+    return user_cc, user_name, user_ape, user_cell, user_email
+
 
 def validar_credenciales(cc, password):
     try:
@@ -73,14 +85,14 @@ def validar_credenciales(cc, password):
         print(f"Error al validar credenciales: {e}")
         return False
 
-def guardar_usuario(cc, name, ape, cell, email, password):
+def guardar_usuario(cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave):
     try:
         connection = psycopg2.connect(**db_params)
         cursor = connection.cursor()
 
         # Consulta SQL para insertar un nuevo usuario
-        query = "INSERT INTO usuarios (cc, name, ape, cell, email, password) VALUES (%s, %s, %s, %s, %s, %s)"
-        cursor.execute(query, (cc, name, ape, cell, email, password))
+        query = "INSERT INTO usuarios (cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        cursor.execute(query, (cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave))
         connection.commit()
 
         cursor.close()
@@ -146,11 +158,13 @@ async def delete_users(request: Request,id: int):
 async def login(request: Request, cc: str = Form(...), password: str = Form(...)):
     # Verifica si las credenciales (cédula y contraseña) son válidas
     if validar_credenciales(cc, password):
-        # Credenciales válidas, redirige al usuario a su cuenta
-        return templates.TemplateResponse("mi_cuenta.html", {"request": request, "error": None, "success": "Bienvenido"})
+        user_data = cargar_datos(cc)
+        return templates.TemplateResponse("mi_cuenta.html", {"request": request, "user_data": user_data, "error": None, "success": None})
+
     else:
         # Credenciales inválidas, muestra un mensaje de error
         return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Cédula o contraseña incorrecta", "success": None})
+
 
 
 
@@ -161,14 +175,18 @@ async def register_users(request: Request,
                          cc: str = Form(...),
                          cell: str = Form(...),
                          email: str = Form(...),
-                         password: str = Form(...)):
+                         password: str = Form(...),
+                         tarjeta_credito: str = Form(...),
+                         fecha_expiracion: str = Form(...),
+                         clave: str = Form(...)):
     # Verifica si el usuario con las mismas credenciales ya existe en la base de datos
     if validar_credenciales(cc, password):
         return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Usuario ya registrado", "success": None})
     else:
-        # Registra al nuevo usuario en la base de datos
-        guardar_usuario(cc, name, ape, cell, email, password)
+        # Registra al nuevo usuario en la base de datos, incluyendo los campos de tarjeta de crédito
+        guardar_usuario(cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave)
         return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
+
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -221,4 +239,4 @@ def about_Josue(request: Request):
     return templates.TemplateResponse('about_Carlos.html', {"request": request})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+    uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", 8000)))

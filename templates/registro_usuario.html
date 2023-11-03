@@ -204,7 +204,7 @@
 <div class="col-md-4 container mt-4">
     <h2>Crear Usuario</h2>
     <form class="container md-4" action="/registrar" method="post">
-        
+
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" name="name" placeholder="Ingrese su nombre" required>
@@ -234,20 +234,36 @@
             <label for="contraseña">Contraseña:</label>
             <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
         </div>
-
         <div class="form-group">
             <label for="confirmar contraseña">Confirmar Contraseña:</label>
             <input type="password" class="form-control" name="confirm-password" placeholder="Confirmar Contraseña" required>
         </div>
+        <!-- Nuevos campos para tarjeta de crédito -->
+        <div class="form-group">
+            <label for="tarjeta">Tarjeta de Crédito:</label>
+            <input type="text" class="form-control" name="tarjeta_credito" placeholder="Ingrese su número de tarjeta de crédito" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fecha_expiracion">Fecha de Expiración (MM/YYYY):</label>
+            <input type="text" class="form-control" name="fecha_expiracion" placeholder="Ingrese la fecha de expiración de la tarjeta" required>
+        </div>
+
+        <div class="form-group">
+            <label for="clave">Clave de Seguridad:</label>
+            <input type="text" class="form-control" name="clave" placeholder="Ingrese la clave de seguridad de la tarjeta" required>
+        </div>
+        <!-- Fin de los nuevos campos -->
+
         <button type="submit" class="btn btn-light my-3">Registrarse</button>
-        </form>
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-        {% endif %}
-        {% if success %}
-        <p style="color: green;">{{ success }}</p>
-        <a href="/inicio_sesion" class="btn btn-outline-success">Iniciar sesión</a>
-        {% endif %}
+    </form>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+    <p style="color: green;">{{ success }}</p>
+    <a href="/inicio_sesion" class="btn btn-outline-success">Iniciar sesión</a>
+    {% endif %}
 </div>
 
 <div><h1></h1></div>

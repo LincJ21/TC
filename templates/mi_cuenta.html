@@ -240,42 +240,14 @@
 </nav>
 
 <div class="black-bar"></div>
-
-{% if success %}
-<div class="alert alert-success">{{ success }}</div>
-{% endif %}
-<div class="container mt-5">
-    <h2 class="text-center">Mi Cuenta</h2>
-    <img class="profile-image mx-auto d-block" src="{{ url_for('static', path='logo03.png') }}" alt="Foto de Perfil">
-    <form class="container md-4 text-center">
-        {% for data in user_data %}
-        <table class="table table-bordered">
-            <tr>
-                <th>CC:</th>
-                <td>{{ data.cc }}</td>
-            </tr>
-            <tr>
-                <th>Nombre:</th>
-                <td>{{ data.name }}</td>
-            </tr>
-            <tr>
-                <th>Apellido:</th>
-                <td>{{ data.ape }}</td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td>{{ data.cell }}</td>
-            </tr>
-            <tr>
-                <th>Número de Tarjeta:</th>
-                <td>{{ data.gmail }}</td>
-            </tr>
-        </table>
-        {% endfor %}
-    </form>
-</div>
-</html>
-
+<h1>Detalles del Usuario</h1>
+<ul>
+    <li><strong>CC:</strong> {{ user_data.0 }}</li>
+    <li><strong>Nombre:</strong> {{ user_data.1 }}</li>
+    <li><strong>Apellido:</strong> {{ user_data.2 }}</li>
+    <li><strong>Celular:</strong> {{ user_data.3 }}</li>
+    <li><strong>Email:</strong> {{ user_data.4 }}</li>
+</ul>
 
 </body>
 </html>

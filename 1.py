@@ -17,31 +17,31 @@ try:
         port=pgport
     )
     print("Conexión establecida")
-
-    # Crear un cursor para ejecutar consultas SQL
     cursor = connection.cursor()
 
-    # Sentencia SQL para crear la tabla "usuarios" con una clave primaria autoincremental
-    create_table_query = '''
-    CREATE TABLE IF NOT EXISTS usuarios (
-        id SERIAL PRIMARY KEY,
-        cc VARCHAR(255) UNIQUE,
-        name VARCHAR(255),
-        ape VARCHAR(255),
-        cell VARCHAR(15),
-        email VARCHAR(255),
-        password VARCHAR(255)
-    )
-    '''
+    # Cambia el número de cédula que deseas buscar (en este caso, se usa 1234567890 como ejemplo)
+    cedula = '1234567890'
 
-    cursor.execute(create_table_query)
-    connection.commit()
+    # Cambia la consulta SQL para buscar un usuario por número de cédula
+    query = "SELECT * FROM usuarios WHERE cc = %s"
+    cursor.execute(query, (cedula,))
 
-    print("Tabla 'usuarios' creada o ya existente")
+    # Obtén el resultado
+    user = cursor.fetchone()
 
-    # Cerrar el cursor y la conexión
+    if user:
+        # Imprime los datos del usuario
+        print(f"ID: {user[0]}")
+        print(f"Cédula: {user[1]}")
+        print(f"Nombre: {user[2]}")
+        print(f"Apellido: {user[3]}")
+        print(f"Email: {user[4]}")
+
+    else:
+        print("Usuario no encontrado")
+
     cursor.close()
     connection.close()
 
 except Exception as e:
-    print(f"Error al crear la tabla 'usuarios': {e}")
+    print(f"Error al realizar la consulta: {e}")
