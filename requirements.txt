@@ -3,4 +3,4 @@ uvicorn[standard]
 jinja2
 python-multipart
 Gunicorn
-mysql.connector
+psycopg2
