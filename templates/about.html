@@ -189,6 +189,10 @@
         margin: 0; 
         color:rgb(28, 30, 30)
         }
+
+        .darkened-background {
+        background-color: rgba(197, 197, 197, 0.8); /* Cambia el fondo a un color semi-transparente si deseas */
+        }
     </style>
 </head>
 <body>
@@ -251,59 +255,66 @@
 <div class="container-fluid">
     <div class="black-bar"></div>
 </div>
-    <div class="container-fluid ">
-        <div class="yellow-background p-2">
-             <div class="Telecommunication"> 
+    <div class="container-fluid">
+        <div class="yellow-background p-2 px-5">
+            <div class="container Telecommunication"> 
                 <h2 class="text-dark">Telecommunication</h2>
-                  <div class="text-dark px-4 py-2 mx-5 my-2">
+                    <div class="text-dark px-4 py-2 mx-5 my-2">
                          <p class="imagen">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, accusamus placeat! Tempora alias, iste enim earum atque fugit nobis corporis perferendis ex. Maiores ducimus tempora inventore. Ipsa, adipisci nemo! Assumenda laborum accusamus quos. Voluptatem modi quaerat, suscipit, obcaecati sequi harum fugit odit voluptatibus consequatur sit blanditiis delectus ea ex consectetur numquam tempore non totam. Recusandae ab totam alias numquam ex porro, earum veritatis doloremque laudantium veniam consequuntur perferendis? Nisi quae exercitationem sequi, quos cumque minima. Necessitatibus maxime eaque voluptatem molestiae doloremque mollitia delectus. Iusto rem voluptas nemo soluta enim eaque.</p>
                     </div>
-                </div>
             </div>
+        </div>
+
+        <div class="darkened-background p-2">
+            <div class="container">
                 <div class="mision" >
                     <h3>Misión</h3>
                     <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi numquam repudiandae ab cupiditate sunt quidem suscipit dolores expedita asperiores pariatur, ipsa minima veritatis, rerum consequatur optio voluptates officia quis dignissimos!</p>
-               </div>
-            <div class="vision">
+                </div>
+                <div class="vision">
                     <h3>Visión</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit unde necessitatibus atque eum aliquam quas! Rem debitis similique delectus neque accusamus! Numquam qui temporibus officiis minima eaque odio alias in!</p>
-              </div>
-              
-              <div style="margin-top: 50px; margin: 50px; text-align:justify">
-                <h3>Qué hacemos</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis labore, dolores ullam quam, molestias porro quod accusamus minima, sint quia maiores voluptatum autem eligendi explicabo pariatur vero natus provident commodi?</p>
+                </div>
+                
+                <div style="margin-top: 50px; margin: 50px; text-align:justify">
+                  <h3>Qué hacemos</h3>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis labore, dolores ullam quam, molestias porro quod accusamus minima, sint quia maiores voluptatum autem eligendi explicabo pariatur vero natus provident commodi?</p>
+                </div>
             </div>
-
-            <div style="margin-top: 50px; margin: 50px; text-align: justify">
-                <h3>Contacto</h3>
-                <p>Puedes contactarnos en Telekomu@gmail.com</p>
+        </div>
+        <div class="bg-dark">
+            <div class="container text-warning pt-2 pb-1">
+                <div style="margin-top: 50px; margin: 50px; text-align: justify">
+                    <h3>Contacto</h3>
+                    <p>Puedes contactarnos en Telekomu@gmail.com</p>
+                </div>
+            </div>
+        </div>
+            <div class="mt-3 container">
                 <h5>Nuestro equipo está conformado por: </h5>
-
-            </div>
-                <div class="row" style="margin-top: 50px; margin: 50px;">
+                <div class="row text-center" style="margin-top: 50px; margin: 50px;">
                     <div class="col-md-4 profile-card">
-                        <img src="{{ url_for('static', path='imagenes/LincJ.jpg') }}" alt="Nombre del integrante" class="imagen-personalizada">
+                        <img src="{{ url_for('static', path='imagenes/LincJ.jpg') }}" alt="Nombre del integrante"class="imagen-personalizada" style="width: 100px; height: 100px;">
                         <h6>Josue Torres</h6>
-
                         <p>Desarrollador de BackEnd</p>
     
                         <a href="/about_Josue">Más</a>
                     </div>
                     <div class="col-md-4 profile-card">
-                        <img src="{{ url_for('static', path='imagenes/Perfil_cesar.jpg') }}" alt="Nombre del integrante" class="imagen-personalizada">
+                        <img src="{{ url_for('static', path='imagenes/Perfil_cesar.jpg') }}" alt="Nombre del integrante"class="imagen-personalizada" style="width: 100px; height: 100px;">
                         <h6>Cesar Salas</h6>
                         <p>Desarrollador de FrontEnd</p>
                         <a href="/about_Cesar">Más</a>
                     </div>
                     <div class="col-md-4 profile-card">
-                        <img src="{{ url_for('static', path='imagenes/Perfil_carlos.png') }}" alt="Nombre del integrante" class="imagen-personalizada">
+                        <img src="{{ url_for('static', path='imagenes/Perfil_carlos.png') }}" alt="Nombre del integrante"class="imagen-personalizada" style="width: 100px; height: 100px;">
                         <h6>Carlos Rodriguez</h6>
                         <p>Diseñador Web Principal</p>
                         <a href="/about_Carlos">Más</a>
                     </div>
-                  </div>
                 </div>
             </div>
+    </div>
     
 </body>
 
