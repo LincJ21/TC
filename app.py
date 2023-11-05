@@ -37,7 +37,7 @@ def cargar_datos(cc):
         cursor = connection.cursor()
 
         # Cambia la consulta SQL para buscar un usuario por número de cédula
-        query = "SELECT cc, name, ape, cell, email FROM usuarios WHERE cc = %s"
+        query = "SELECT cc, nombre, apellido, telefono, correo FROM usuarios WHERE cc = %s"
         cursor.execute(query, (cc,))
 
         user = cursor.fetchone()
@@ -70,7 +70,7 @@ def validar_credenciales(cc, password):
         cursor = connection.cursor()
 
         # Consulta SQL para buscar un usuario por cédula y contraseña
-        query = "SELECT * FROM usuarios WHERE cc = %s AND password = %s"
+        query = "SELECT * FROM usuarios WHERE cc = %s AND contraseña = %s"
         cursor.execute(query, (cc, password))
 
         # Obtener el resultado
@@ -85,14 +85,14 @@ def validar_credenciales(cc, password):
         print(f"Error al validar credenciales: {e}")
         return False
 
-def guardar_usuario(cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave):
+def guardar_usuario(cc, name, ape, cell, email, password, direction):
     try:
         connection = psycopg2.connect(**db_params)
         cursor = connection.cursor()
 
         # Consulta SQL para insertar un nuevo usuario
-        query = "INSERT INTO usuarios (cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        cursor.execute(query, (cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave))
+        query = "INSERT INTO usuarios (cc, nombre, apellido,  correo, contraseña, telefono, direccion) VALUES (%s, %s, %s, %s, %s, %s,%s)"
+        cursor.execute(query, (cc, name, ape,  email, password, cell, direction ))
         connection.commit()
 
         cursor.close()
@@ -176,15 +176,13 @@ async def register_users(request: Request,
                          cell: str = Form(...),
                          email: str = Form(...),
                          password: str = Form(...),
-                         tarjeta_credito: str = Form(...),
-                         fecha_expiracion: str = Form(...),
-                         clave: str = Form(...)):
+                         direction: str = Form(...)):
     # Verifica si el usuario con las mismas credenciales ya existe en la base de datos
     if validar_credenciales(cc, password):
         return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": "Usuario ya registrado", "success": None})
     else:
         # Registra al nuevo usuario en la base de datos, incluyendo los campos de tarjeta de crédito
-        guardar_usuario(cc, name, ape, cell, email, password, tarjeta_credito, fecha_expiracion, clave)
+        guardar_usuario(cc, name, ape, cell, email, password,direction)
         return templates.TemplateResponse("inicio_sesion.html", {"request": request, "error": None, "success": "Usuario registrado exitosamente"})
 
 
@@ -243,4 +241,4 @@ def help(request: Request):
     return templates.TemplateResponse('help.html', {"request": request})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+    uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", 8000)))

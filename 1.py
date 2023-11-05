@@ -17,31 +17,27 @@ try:
         port=pgport
     )
     print("Conexión establecida")
+    
+    # Crear un cursor
     cursor = connection.cursor()
 
-    # Cambia el número de cédula que deseas buscar (en este caso, se usa 1234567890 como ejemplo)
-    cedula = '1234567890'
+    # Consulta SQL para modificar las columnas "CC" y "Contraseña" a tipo VARCHAR
+    query = """
+    ALTER TABLE usuarios
+    ALTER COLUMN CC TYPE VARCHAR(255),
+    ALTER COLUMN TELEFONO TYPE VARCHAR(255);
+    """
+    
+    # Ejecutar la consulta
+    cursor.execute(query)
 
-    # Cambia la consulta SQL para buscar un usuario por número de cédula
-    query = "SELECT * FROM usuarios WHERE cc = %s"
-    cursor.execute(query, (cedula,))
+    # Confirmar la transacción
+    connection.commit()
 
-    # Obtén el resultado
-    user = cursor.fetchone()
-
-    if user:
-        # Imprime los datos del usuario
-        print(f"ID: {user[0]}")
-        print(f"Cédula: {user[1]}")
-        print(f"Nombre: {user[2]}")
-        print(f"Apellido: {user[3]}")
-        print(f"Email: {user[4]}")
-
-    else:
-        print("Usuario no encontrado")
-
+    # Cerrar el cursor y la conexión
     cursor.close()
     connection.close()
+    print("Columnas 'CC' y 'Contraseña' modificadas a tipo VARCHAR correctamente")
 
 except Exception as e:
     print(f"Error al realizar la consulta: {e}")
