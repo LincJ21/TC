@@ -189,6 +189,11 @@
         margin: 0; 
         color:rgb(28, 30, 30)
         }
+        
+        .escala_imagen{
+            transform: scale(0.5);
+        }
+
     </style>
 </head>
 <body>
@@ -236,6 +241,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/help">Ayuda</a>
                 </li>
                 <li class="nav-item">
                     <a id="perfil-link" class="nav-link" href="/mi_cuenta">Mi Cuenta</a>
@@ -314,16 +322,18 @@
         <h2>¿Deseas mejorar tu conexión?</h2>
     </div>
 
-    <div class="row m-5">
-        <div class="col text-center">
-            <img src="{{ url_for('static', path='imagenes/Fast_communication_black-no_background.png') }}" alt="Fast Communication" class="...">
-            <p class="text"></p>
+    <div class="row justify-content-around m-5 align-items-center">
+        <div class="col-md-3 text-center">
+            <img src="{{ url_for('static', path='imagenes/Fast_communication_black-no_background.png') }}" alt="Fast Communication" class="img-fluid  my-5">
+            <p class="h6 mt-3">Consejos para Fast Telecommunication</p>
         </div>
-        <div class="col text-center">
-            <img src="{{ url_for('static', path='imagenes/Modem_icon.png') }}" alt="Icono Modem" class="...">
+        <div class="col-md-3 text-center">
+            <img src="{{ url_for('static', path='imagenes/Modem_icon.png') }}" alt="Icono Modem" class="img-fluid escala_imagen">
+            <p class="h6">Uso de banda dual</p>
         </div>
-        <div class="col text-center">
-            <img src="{{ url_for('static', path='imagenes/Signal_icon.png') }}" alt="Icono Modem" class="...">
+        <div class="col-md-3 text-center">
+            <img src="{{ url_for('static', path='imagenes/Signal_icon.png') }}" alt="Icono Modem" class="img-fluid escala_imagen">
+            <p class="h6">Extiende tu señal de internet</p>
         </div>
     </div>
 
