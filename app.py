@@ -236,6 +236,10 @@ def about_Josue(request: Request):
 def about_Josue(request: Request):
     return templates.TemplateResponse('about_Carlos.html', {"request": request})
 
+@app.get("/cobertura", response_class=HTMLResponse)
+def cobertura(request: Request):
+    return templates.TemplateResponse('cobertura.html', {"request": request})
+
 @app.get("/help", response_class=HTMLResponse)
 def help(request: Request):
     return templates.TemplateResponse('help.html', {"request": request})

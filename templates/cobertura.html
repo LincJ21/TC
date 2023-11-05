@@ -141,77 +141,54 @@
         .yellow-text {
             color: #FFE03D;
         }
-        /* Estilo personalizado para el perfil */
-        .profile-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
+
+
+        .tamanio {
+            text-align: left;
+            max-width: 90%;
+            color: white;
+            display:flex;
+            text-align: justify;
         }
 
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 20px;
+        .color{
+        background-color: rgba(137, 77, 184, 1);
+        padding: 10px; 
+        width: 90%; 
+        margin: 50px; 
+        color: white;
+        text-align: justify;
         }
 
-        .profile-name {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .profile-cedula {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .profile-email {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .profile-button {
-            font-size: 16px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .user-details {
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
+        .mision {
+        max-width: 90%;
+        margin-top: 50px;
+        margin: 50px; 
+        text-align: left;
+        text-align: justify;
         
-        .section-title {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 15px;
-        }
         
-        .user-info {
-            list-style: none;
-            padding: 0;
         }
-        
-        .user-info li {
-            margin-bottom: 10px;
+
+        .vision{
+        max-width: 90%;
+        margin-top: 50px;
+        margin: 50px; 
+        text-align: left;
+        text-align: justify;
         }
-        
-        .user-info li strong {
-            font-weight: bold;
-            margin-right: 10px;
+
+        .fondo{
+
+        background-image: url("https://i.postimg.cc/mDm3cMR7/Rectangle-49-2.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        padding: 10px; 
+        width: 90%; 
+        margin: 0; 
+        color:rgb(28, 30, 30)
         }
-        
     </style>
 </head>
 <body>
@@ -232,14 +209,13 @@
                     <form class="form-inline my-2 my-lg-0 ml-auto">
                         <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
                         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
-                        <button id="inicio_sesion-link" class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="inicio_sesion.html">Iniciar Sesion</a></button>
+                        <button id="inicio_sesion-link" class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="/inicio_sesion">Iniciar Sesion</a></button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </nav>
-
 <!-- Barra de Navegación Transparente -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-navbar">
     <div class="container-fluid">
@@ -269,24 +245,17 @@
     </div>
 </nav>
 
-<div class="container mt-5">
-    <div class="user-details row">
-        <div class="col-md-4">
-            <img src="{{ url_for('static', path='perfiles/perfil2.jpg') }}" alt="Foto de perfil" class="img-fluid rounded-circle">
-        </div>
-        <div class="col-md-8">
-            <h1>Detalles del Usuario</h1>
-            <ul class="list-unstyled">
-                <li><strong>Documento de Identidad:</strong> {{ user_data.0 }}</li>
-                <li><strong>Nombre:</strong> {{ user_data.1 }}</li>
-                <li><strong>Apellido:</strong> {{ user_data.2 }}</li>
-                <li><strong>Celular:</strong> {{ user_data.3 }}</li>
-                <li><strong>Email:</strong> {{ user_data.4 }}</li>
-            </ul>
-        </div>
-    </div>
+<div class="container-fluid">
+    <div class="black-bar"></div>
 </div>
 
+<div class="Ayuda text-center text-dark my-5 p-2">
+    <h2>Conoce nuestra cobertura por el pais</h2>
+
+    <img src="{{ url_for('static', path = 'imagenes/cobertura.png') }}" alt="Imagen de referencia" class="">
+
+</div>
 
 </body>
+
 </html>
