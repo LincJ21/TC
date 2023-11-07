@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio-Telecommunication Company</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='imagenes/logo 03.png') }}">
     <!-- Agrega la CDN de Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -162,7 +163,7 @@
                     <form class="form-inline my-2 my-lg-0 ml-auto" id="searchForm">
                         <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" id="searchInput">
                         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
-                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><a href="/inicio_sesion">Iniciar Sesion</a></button>
+                        <a id="inicio_sesion-link" class="btn btn-outline-warning my-2 my-sm-0" type="submit" href="inicio_sesion">Iniciar Sesion</a>
                     </form>
                     <div id="searchResults">
                         <!-- Aquí mostrarás los resultados de la búsqueda -->

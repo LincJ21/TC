@@ -244,5 +244,9 @@ def cobertura(request: Request):
 def help(request: Request):
     return templates.TemplateResponse('help.html', {"request": request})
 
+@app.get("/entretenimiento", response_class=HTMLResponse)
+def entretenimiento(request: Request):
+    return templates.TemplateResponse('entretenimiento.html', {"request": request})
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
