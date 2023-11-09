@@ -142,8 +142,28 @@
         .yellow-text {
             color: #FFE03D;
         }
-        .over-position {
+        .img-tamanio-icon {
+        width: 300;
+        height: 180px;
+        }
+
+        .expand-icon{
+            transition: all 0.5s;
+        }
+
+        .expand-icon:hover{
+            transform: scale(1.2);
+        }
+
+        .modal {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-30%, -50%);
+        }
+
+        .add-size {
+            height: 300px;
         }
 
     </style>
@@ -191,7 +211,6 @@
                 <li class="nav-item">
                     <a id="servicios-link" class="nav-link" href="/servicios">Servicios</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/cobertura">Cobertura</a>
                 </li>
@@ -213,13 +232,160 @@
     <div class="black-bar"></div>
 </div>
 
-<div class="container-fluid"><div class="position-absolute top-50 start-50 translate-middle"></div>
-      <h4>Nature</h4>
-      <p>What a beautiful sunrise</p>
-    </div>
-    <img src="{{ url_for('static', path='imagenes/Entretenimiento-Bg.jpg') }}" style="width:100%;">
+<div class="card text-center text-white">
+    <img src="{{ url_for('static', path='imagenes/Entretenimiento-Bg.jpg') }}" class="card-img align-content-center" alt="...">
+    <div class="card-img-overlay align-content-center">
+      <p class="display-1" style="font-size: 70px; margin: 40px;">¿Algo te llama la atención?</p>
+
+      <!-- Button trigger modal -->
+    <button type="button" class="btn m-3 expand-icon" style="background-color: #000000;" data-toggle="modal" data-target="#modalNetflix">
+        <img src="{{ url_for('static', path='imagenes/Netflix icon.png') }}"  alt="Imagen 1" class="img-tamanio-icon">
+    </button>
     
-  </div>
+    <button type="button" class="btn m-3 expand-icon" style="background-color: #080c44;" data-toggle="modal" data-target="#modalDisney">
+        <img src="{{ url_for('static', path='imagenes/disney+.png') }}"  alt="Imagen 2"  class="img-tamanio-icon">
+    </button>
+    
+    <button type="button" class="btn m-3 expand-icon" style="background-color: #803ccc;" data-toggle="modal" data-target="#modalHboMax">
+        <img src="{{ url_for('static', path='imagenes/hbomax.png') }}"  alt="Imagen 3" style="scale: 1.40;" class="img-tamanio-icon">
+    </button>
+    
+    <button type="button" class="btn m-3 expand-icon" style="background-color: #ffffff;" data-toggle="modal" data-target="#modalParamount">
+        <img src="{{ url_for('static', path='imagenes/Paramount_Plus.webp') }}"  alt="Imagen 4"class="img-tamanio-icon">
+    </button>
+    
+    <button type="button" class="btn m-3 expand-icon" style="background-color: #0c1c29;" data-toggle="modal" data-target="#modalPrimeVideo">
+        <img src="{{ url_for('static', path='imagenes/Prime_Video.png') }}"  alt="Imagen 5"class="img-tamanio-icon">
+    </button>
+  
+  <!-- Modal Netflix-->
+            <div class="modal" id="modalNetflix" data-target="#modalNetflix">
+                <div class="modal-dialog-centered modal-lg">
+                    <div class="modal-content" style="background-color: #000000;">
+                        <div class="modal-body">
+                            <div class="container-fluid text-dark">
+                                <div class="row">
+                                  <div class="col">
+                                    <img src="{{ url_for('static', path='imagenes/Anuncio_netflix_ent.jpeg') }}"  alt="Imagen 6" class="add-size">
+                                  </div>
+                                  <div class="col">
+                                    <div class="modal-header justify-content-end border-0">
+                                        <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
+                                  </div>
+                                  <img src="{{ url_for('static', path='imagenes/Netflix icon.png') }}"  alt="Imagen 6" style="width: 150px ">
+                                  <p class="text-white align-text-center">¡Películas, programas de TV y más ilimitados!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+    <!-- Modal Disney+-->
+
+            <div class="modal" id="modalDisney" data-target="#modalDisney">
+                <div class="modal-dialog-centered modal-lg">
+                    <div class="modal-content" style="background-color: #080c44;">
+                        <div class="modal-body">
+                            <div class="container-fluid text-dark">
+                                <div class="row">
+                                <div class="col">
+                                    <img src="{{ url_for('static', path='imagenes/Anuncio_disney_ent.jpg') }}"  alt="Imagen 6" class="add-size">
+                                </div>
+                                <div class="col">
+                                    <div class="modal-header justify-content-end border-0">
+                                        <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
+                                  </div>
+                                  <img src="{{ url_for('static', path='imagenes/disney+.png') }}"  alt="Imagen 6" style="width: 150px ">
+                                  <p class="text-white align-text-center">Entretenimiento para todos. Disfruta hasta en cuatro pantallas en simultáneo.</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Modal HboMax-->
+            
+            <div class="modal" id="modalHboMax" data-target="#modalHboMax">
+                <div class="modal-dialog-centered modal-lg">
+                    <div class="modal-content" style="background-color: #803ccc">
+                        <div class="modal-body">
+                            <div class="container-fluid text-dark">
+                                <div class="row">
+                                <div class="col">
+                                    <img src="{{ url_for('static', path='imagenes/Anuncio_hbomax_ent.jpg') }}"  alt="Imagen 6" class="add-size">
+                                </div>
+                                <div class="col">
+                                    <div class="modal-header justify-content-end border-0">
+                                        <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
+                                  </div>
+                                  <img src="{{ url_for('static', path='imagenes/hbomax.png') }}"  alt="Imagen 6" style="width: 150px; scale: 1.40">
+                                  <p class="text-white align-text-center">Entretenimiento para todos. Disfruta hasta en cuatro pantallas en simultáneo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Modal Paramount+-->
+            
+            <div class="modal" id="modalParamount" data-target="#modalParamount">
+                <div class="modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="container-fluid text-dark">
+                                <div class="row">
+                                  <div class="col">
+                                    <img src="{{ url_for('static', path='imagenes/Anuncio_paramount_ent.jpg') }}"  alt="Imagen 6" class="add-size">
+                                  </div>
+                                  <div class="col">
+                                    <div class="modal-header justify-content-end border-0">
+                                        <button type="button" class="btn-close text-dark" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
+                                  </div>
+                                  <img src="{{ url_for('static', path='imagenes/Paramount_Plus.webp') }}"  alt="Imagen 6" style="width: 150px ">
+                                  <p class="text-dark align-text-center">Entretenimiento para todos. Disfruta hasta en cuatro pantallas en simultáneo.</p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Modal PrimeVideo-->
+            
+            <div class="modal" id="modalPrimeVideo" data-target="#modalPrimeVideo" style="top: 500px;">
+                <div class="modal-dialog-centered modal-lg">
+                    <div class="modal-content" style="background-color: #0c1c29;">
+                        <div class="modal-body">
+                            <div class="container-fluid text-dark">
+                                <div class="row">
+                                  <div class="col">
+                                    <img src="{{ url_for('static', path='imagenes/Anuncio_primevideo_ent.jpg') }}"  alt="Imagen 6" class="add-size">
+                                  </div>
+                                  <div class="col">
+                                    <div class="modal-header justify-content-end border-0">
+                                        <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
+                                  </div>
+                                  <img src="{{ url_for('static', path='imagenes/Prime_Video.png') }}"  alt="Imagen 6" style="width: 200px ">
+                                  <p class="text-white align-text-center">Entretenimiento para todos. Disfruta hasta en cuatro pantallas en simultáneo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="static/search.js"></script> <!-- Ruta relativa a la carpeta "static" -->
