@@ -21,15 +21,20 @@ try:
     # Crear un cursor
     cursor = connection.cursor()
 
-    # Consulta SQL para modificar las columnas "CC" y "Contraseña" a tipo VARCHAR
+    # Datos que deseas insertar en la tabla Producto
+    id_tipo_producto = 1
+    Nombre = "Plan Familiar 1"
+    Descripcion = "Adquiere nuestro combo familiar 1 con los siguientes beneficios: - 30 Megas de internet hogar - Telefonia fija ilimitada - Televisión ilimitada -"
+    Precio = 40000
+
+    # Consulta SQL para la inserción de datos
     query = """
-    ALTER TABLE usuarios
-    ALTER COLUMN CC TYPE VARCHAR(255),
-    ALTER COLUMN TELEFONO TYPE VARCHAR(255);
+    INSERT INTO Producto (id_tipo_producto, Nombre, descripcion, Precio)
+    VALUES (%s, %s, %s, %s);
     """
     
     # Ejecutar la consulta
-    cursor.execute(query)
+    cursor.execute(query, (id_tipo_producto, Nombre, Descripcion, Precio))
 
     # Confirmar la transacción
     connection.commit()
@@ -37,7 +42,7 @@ try:
     # Cerrar el cursor y la conexión
     cursor.close()
     connection.close()
-    print("Columnas 'CC' y 'Contraseña' modificadas a tipo VARCHAR correctamente")
+    print("Datos insertados en la tabla 'Producto' correctamente")
 
 except Exception as e:
-    print(f"Error al realizar la consulta: {e}")
+    print(f"Error al realizar la consulta: {e}")
