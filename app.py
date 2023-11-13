@@ -284,4 +284,4 @@ def render_registro_usuario_page(entretenimiento: str, request: Request, session
     return render_authenticated_page('entretenimiento.html', request, session_token)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", 8000)))
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
