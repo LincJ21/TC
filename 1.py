@@ -21,20 +21,26 @@ try:
     # Crear un cursor
     cursor = connection.cursor()
 
-    # Datos que deseas insertar en la tabla Producto
-    id_tipo_producto = 1
-    Nombre = "Plan Familiar 1"
-    Descripcion = "Adquiere nuestro combo familiar 1 con los siguientes beneficios: - 30 Megas de internet hogar - Telefonia fija ilimitada - Televisión ilimitada -"
-    Precio = 40000
-
-    # Consulta SQL para la inserción de datos
-    query = """
-    INSERT INTO Producto (id_tipo_producto, Nombre, descripcion, Precio)
-    VALUES (%s, %s, %s, %s);
+    # Sentencia SQL para crear la tabla compras
+    create_table_query = """
+    CREATE TABLE compras (
+        id_compra serial PRIMARY KEY,
+        cedula VARCHAR(255),
+        nombre VARCHAR(255),
+        apellido VARCHAR(255),
+        correo VARCHAR(255),
+        departamento VARCHAR(255),
+        ciudad_pueblo VARCHAR(255),
+        barrio VARCHAR(255),
+        celular VARCHAR(15),
+        numero_tarjeta VARCHAR(255),
+        fecha_expiracion VARCHAR(7),
+        codigo_seguridad VARCHAR(3)
+    );
     """
     
     # Ejecutar la consulta
-    cursor.execute(query, (id_tipo_producto, Nombre, Descripcion, Precio))
+    cursor.execute(create_table_query)
 
     # Confirmar la transacción
     connection.commit()
@@ -42,7 +48,8 @@ try:
     # Cerrar el cursor y la conexión
     cursor.close()
     connection.close()
-    print("Datos insertados en la tabla 'Producto' correctamente")
+    print("Tabla 'compras' creada correctamente")
 
 except Exception as e:
-    print(f"Error al realizar la consulta: {e}")
+    print(f"Error al crear la tabla 'compras': {e}")
+

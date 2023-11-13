@@ -305,13 +305,6 @@
                     <form class="form-inline my-2 my-lg-0 ml-auto">
                         <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
                         <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
-                        
-                        {% if user_data %}
-                            <img src="{{ url_for('static', path='imagenes/logo 03.png') }}" alt="Logo de la Empresa" class="imagen-personalizada">
-                        {% else %}
-                            <!-- Si no hay un usuario autenticado, mostrar el botón de inicio de sesión -->
-                            <a id="inicio_sesion-link" class="btn btn-outline-warning my-2 my-sm-0" href="inicio_sesion">Iniciar Sesión</a>
-                        {% endif %}
                     </form>
                 </div>
             </div>
@@ -362,13 +355,9 @@
 
 <div class="black-bar"></div>
 {% block content %}{% endblock %}
-{% if user_data %}
-    <p>Welcome, {{ user_data.1 }} {{ user_data.2 }}!</p>
-    <!-- Display additional content for logged-in users -->
-    <a href="/logout">Logout</a>
-{% else %}
-    <!-- Display login link or any other content for users not logged in -->
-    <a href="/inicio_sesion">Login</a>
-{% endif %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="static/search.js"></script> <!-- Ruta relativa a la carpeta "static" -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

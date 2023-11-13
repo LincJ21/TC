@@ -6,19 +6,72 @@
             <form class="container md-4" action="/comprarP" method="post">
                 <label for="nombre">Cedula:</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="id" placeholder="Cedula" required>
+                    <input type="text" class="form-control" name="cc" placeholder="Cedula" required>
                 </div>
+                
                 <label for="nombre">Nombre:</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Nombre" required>
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
                 </div>
                 <label for="nombre">Apellido:</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="ape" placeholder="Apellido" required>
+                    <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
                 </div>
                 <label for="nombre">Correo:</label>
                 <div class="form-group">
                     <input type="email" class="form-control" name="email" placeholder="Correo" required>
+                </div>
+                <label for="departamento">Departamento:</label>
+                <div class="form-group">
+                    <select class="form-control" name="departamento" id="departamento" required>
+                        <option value="" disabled selected>Selecciona un departamento</option>
+                        <option value="Amazonas">Amazonas</option>
+                        <option value="Antioquia">Antioquia</option>
+                        <option value="Arauca">Arauca</option>
+                        <option value="Atlántico">Atlántico</option>
+                        <option value="Bolívar">Bolívar</option>
+                        <option value="Boyacá">Boyacá</option>
+                        <option value="Caldas">Caldas</option>
+                        <option value="Caquetá">Caquetá</option>
+                        <option value="Casanare">Casanare</option>
+                        <option value="Cauca">Cauca</option>
+                        <option value="Cesar">Cesar</option>
+                        <option value="Chocó">Chocó</option>
+                        <option value="Córdoba">Córdoba</option>
+                        <option value="Cundinamarca">Cundinamarca</option>
+                        <option value="Guainía">Guainía</option>
+                        <option value="Guaviare">Guaviare</option>
+                        <option value="Huila">Huila</option>
+                        <option value="La Guajira">La Guajira</option>
+                        <option value="Magdalena">Magdalena</option>
+                        <option value="Meta">Meta</option>
+                        <option value="Nariño">Nariño</option>
+                        <option value="Norte de Santander">Norte de Santander</option>
+                        <option value="Putumayo">Putumayo</option>
+                        <option value="Quindío">Quindío</option>
+                        <option value="Risaralda">Risaralda</option>
+                        <option value="San Andrés y Providencia">San Andrés y Providencia</option>
+                        <option value="Santander">Santander</option>
+                        <option value="Sucre">Sucre</option>
+                        <option value="Tolima">Tolima</option>
+                        <option value="Valle del Cauca">Valle del Cauca</option>
+                        <option value="Vaupés">Vaupés</option>
+                        <option value="Vichada">Vichada</option>
+                    </select>
+                </div>
+                <label for="ciudad_pueblo">Ciudad o Pueblo:</label>
+                <div class="form-group">
+                    <select class="form-control" name="ciudad_pueblo" id="ciudad_pueblo" required>
+                        <option value="" disabled selected>Selecciona un departamento primero</option>
+                    </select>
+                </div>
+                <label for="numero_tarjeta">Barrio:</label>
+                <div class="form-group">
+                    <input type="Barrio" class="form-control" name="barrio" placeholder="Correo" required>
+                </div>
+                <label for="numero_tarjeta">Celular:</label>
+                <div class="form-group">
+                    <input type="celular" class="form-control" name="celular" placeholder="Correo" required>
                 </div>
                 <label for="numero_tarjeta">Número de Tarjeta:</label>
                 <div class="form-group">
@@ -44,4 +97,78 @@
             <p style="color: green;">{{ success }}</p>
             {% endif %}
     </div>
+    <script>
+        // Lista de ciudades por departamento
+        const ciudadesPorDepartamento = {
+            'Amazonas': ['Leticia', 'Puerto Nariño'],
+            'Antioquia': ['Medellín', 'Envigado', 'Bello', 'Itagüí', 'Sabaneta'],
+            'Arauca': ['Arauca', 'Arauquita', 'Saravena', 'Tame'],
+            'Atlántico': ['Barranquilla', 'Soledad', 'Malambo', 'Sabanagrande'],
+            'Bolívar': ['Cartagena', 'Arjona', 'Magangué', 'Mompos'],
+            'Boyacá': ['Tunja', 'Duitama', 'Sogamoso', 'Chiquinquirá'],
+            'Caldas': ['Manizales', 'Villamaría', 'Chinchiná', 'La Dorada'],
+            'Caquetá': ['Florencia', 'Belén de los Andaquíes', 'San Vicente del Caguán', 'Morelia'],
+            'Casanare': ['Yopal', 'Aguazul', 'Villanueva', 'Tauramena'],
+            'Cauca': ['Popayán', 'Santander de Quilichao', 'Patía', 'Piendamó'],
+            'Cesar': ['Valledupar', 'Aguachica', 'Bosconia', 'La Jagua de Ibirico'],
+            'Chocó': ['Quibdó', 'Nuquí', 'Istmina', 'Riosucio'],
+            'Córdoba': ['Montería', 'Sincelejo', 'Planeta Rica', 'Cereté'],
+            'Cundinamarca': ['Bogotá', 'Soacha', 'Zipaquirá', 'Chía'],
+            'Guainía': ['Inírida'],
+            'Guaviare': ['San José del Guaviare'],
+            'Huila': ['Neiva', 'Pitalito', 'Garzón', 'Campoalegre'],
+            'La Guajira': ['Riohacha', 'Maicao', 'Fonseca', 'Villanueva'],
+            'Magdalena': ['Santa Marta', 'Ciénaga', 'Fundación', 'Puebloviejo'],
+            'Meta': ['Villavicencio', 'Acacías', 'Granada', 'Puerto López'],
+            'Nariño': ['Pasto', 'Ipiales', 'Tumaco', 'Túquerres'],
+            'Norte de Santander': ['Cúcuta', 'Ocaña', 'Pamplona', 'Villa del Rosario'],
+            'Putumayo': ['Mocoa', 'Puerto Asís', 'Sibundoy', 'Villagarzón'],
+            'Quindío': ['Armenia', 'Calarcá', 'Circasia', 'Montenegro'],
+            'Risaralda': ['Pereira', 'Dosquebradas', 'La Virginia', 'Santa Rosa de Cabal'],
+            'San Andrés y Providencia': ['San Andrés'],
+            'Santander': ['Bucaramanga', 'Floridablanca', 'Girón', 'Piedecuesta'],
+            'Sucre': ['Sincelejo', 'Corozal', 'Santiago de Tolú', 'San Marcos'],
+            'Tolima': ['Ibagué', 'Espinal', 'Melgar', 'Chaparral'],
+            'Valle del Cauca': ['Cali', 'Buenaventura', 'Palmira', 'Tuluá'],
+            'Vaupés': ['Mitú'],
+            'Vichada': ['Puerto Carreño']
+        };
+        document.addEventListener('DOMContentLoaded', function () {
+            const departamentoSelect = document.getElementById('departamento');
+            const ciudadPuebloSelect = document.getElementById('ciudad_pueblo');
+
+            // Llena las opciones de departamentos
+            Object.keys(ciudadesPorDepartamento).forEach(function (departamento) {
+                const option = document.createElement('option');
+                option.value = departamento;
+                option.textContent = departamento;
+                departamentoSelect.appendChild(option);
+            });
+
+            // Evento que se dispara al cambiar el departamento
+            departamentoSelect.addEventListener('change', function () {
+                const selectedDepartamento = departamentoSelect.value;
+                const ciudades = ciudadesPorDepartamento[selectedDepartamento];
+
+                // Limpia las opciones actuales
+                ciudadPuebloSelect.innerHTML = '';
+
+                // Llena las opciones de ciudad según el departamento seleccionado
+                if (ciudades) {
+                    ciudades.forEach(function (ciudad) {
+                        const option = document.createElement('option');
+                        option.value = ciudad;
+                        option.textContent = ciudad;
+                        ciudadPuebloSelect.appendChild(option);
+                    });
+                } else {
+                    const option = document.createElement('option');
+                    option.value = '';
+                    option.textContent = 'Selecciona un departamento primero';
+                    ciudadPuebloSelect.appendChild(option);
+                }
+            });
+        });
+    </script>
+</form>
 {% endblock %}
