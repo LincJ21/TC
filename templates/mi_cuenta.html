@@ -3,18 +3,38 @@
 {% block content %}
 <div class="container mt-5">
     <div class="user-details row">
-        <div class="col-md-4">
-            <img src="{{ url_for('static', path='perfiles/perfil2.jpg') }}" alt="Foto de perfil" class="img-fluid rounded-circle">
-        </div>
-        <div class="col-md-8">
-            <h1>Detalles del Usuario</h1>
-            <ul class="list-unstyled">
-                <li><strong>Documento de Identidad:</strong> {{ user_data.0 }}</li>
-                <li><strong>Nombre:</strong> {{ user_data.1 }}</li>
-                <li><strong>Apellido:</strong> {{ user_data.2 }}</li>
-                <li><strong>Celular:</strong> {{ user_data.3 }}</li>
-                <li><strong>Email:</strong> {{ user_data.4 }}</li>
-            </ul>
+        {% if user_data %}
+            <div class="col-md-4">
+                <img src="{{ url_for('static', path='perfiles/perfil2.jpg') }}" alt="Foto de perfil" class="img-fluid rounded-circle">
+            </div>
+            <div class="col-md-8">
+                <h1>Detalles del Usuario</h1>
+                <ul class="list-unstyled">
+                    <li><strong>Documento de Identidad:</strong> {{ user_data.0 }}</li>
+                    <li><strong>Nombre:</strong> {{ user_data.1 }}</li>
+                    <li><strong>Apellido:</strong> {{ user_data.2 }}</li>
+                    <li><strong>Celular:</strong> {{ user_data.3 }}</li>
+                    <li><strong>Email:</strong> {{ user_data.4 }}</li>
+                </ul>
+            </div>
+        {% else %}
+            <div class="col-md-12">
+                <p>No se encontraron detalles de usuario.</p>
+            </div>
+        {% endif %}
+        
+        {% if session_closed %}
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">
+                    Sesión cerrada exitosamente. Redireccionando a la página de inicio...
+                </div>
+            </div>
+        {% endif %}
+        
+        <div class="col-md-12">
+            <form action="/logout" method="post">
+                <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+            </form>
         </div>
     </div>
 </div>
