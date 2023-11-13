@@ -164,7 +164,7 @@ async def login(request: Request, cc: str = Form(...), password: str = Form(...)
 @app.post('/logout')
 async def logout(response: Response):
     response.delete_cookie(key="session_token")
-    return {"mensaje":"Por favor copie y pege el link si desea regresar: https://telecommunication-company-5f5d.onrender.com/home"}
+    return {"mensaje":"Por favor copie y pege el link si desea regresar: https://telecommunication-company-5f5d.onrender.com/home          o      regrese y actualice"}
 
 
 # Ruta para la página 'mi_cuenta'
