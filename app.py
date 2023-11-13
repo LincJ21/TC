@@ -162,12 +162,9 @@ async def login(request: Request, cc: str = Form(...), password: str = Form(...)
 
 # Ruta para cerrar sesión y eliminar la cookie
 @app.post('/logout')
-async def logout(response: Response, request: Request):
+async def logout(response: Response):
     response.delete_cookie(key="session_token")
-    return templates.TemplateResponse(
-            "home.html",
-            {"request": request, "user_data": None, "error": None, "success": None}
-        )
+    return {"mensaje":"Por favor copie y pege el link si desea regresar: https://telecommunication-company-5f5d.onrender.com/home"}
 
 
 # Ruta para la página 'mi_cuenta'
