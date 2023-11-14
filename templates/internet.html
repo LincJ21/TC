@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="card text-center">
+    <img src="{{ url_for('static', path='imagenes/bg-internet.png') }}" class="card-img align-content-center" alt="...">
+    <div class="card-img-overlay align-content-center">
+        <p class="display-1 text-dark" style="font-size: 70px; margin: 40px; margin-top: 80px;">Servicio de internet</p>
+        <p class="display-1 text-dark" style="font-size: 30px; margin-left: 400px; width: 500px;">El internet que necesitas para estar conectado con familiares o amigos, en cualquier momento y lugar de tu casa.</p>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row" style="margin: 100px;">
+            <div class="col align-text-center" style="margin-top: 50px;">
+                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">Internet sin Teléfono</p>
+                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">Disfruta todos los beneficios de estar conectado a la velocidad de Fast, sin la necesidad de contratar una línea de teléfono para tu casa.</p>
+            </div>
+            <div class="col">
+                <img src="{{ url_for('static', path='imagenes/internet-1.jpg') }}" style="width: 400px;">
+            </div>
+        </div>
+        <div class="row" style="margin: 100px;">
+            <div class="col align-text-center">
+                <img src="{{ url_for('static', path='imagenes/internet-2.jpg') }}" style="width: 400px;">
+            </div>
+            <div class="col" style="margin-top: 50px;">
+                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">Paquetes de Internet</p>
+                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">Los Paquetes Infinitum están diseñados para ofrecerte internet de gran velocidad, entretenimiento y llamadas ilimitadas para tu casa; elige el plan a tu medida: 60, 100, 300, 750 Megas y 1 Giga.</p>
+            </div>
+        </div>
+        <div class="row" style="margin: 100px;">
+            <div class="col align-text-center" style="margin-top: 50px;">
+                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">WiFi Móvil en Fast</p>
+                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">WiFi Móvil en Infinitum te acompaña a donde tú vayas; aeropuertos, restaurantes, parques, plazas públicas y en más de 9,000 Puntos de Acceso.</p>
+            </div>
+            <div class="col">
+                <img src="{{ url_for('static', path='imagenes/internet-3.jpg') }}" style="width: 400px;">
+            </div>
+        </div>
+        <div class="row" style="margin: 100px;">
+            <div class="col align-text-center">
+                <img src="{{ url_for('static', path='imagenes/internet-4.jpg') }}" style="width: 400px;">
+            </div>
+            <div class="col" style="margin-top: 50px;">
+                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">Extiende tu red</p>
+                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">Que tu red de conexión a internet llegue a cada rincón de tu casa, con los extensores cobertura WiFi, que funcionan con los módems o equipos puntos de acceso que tenemos para ti; encuéntralos en tu Centro de Atención Telecommunication.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

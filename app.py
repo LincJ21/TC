@@ -167,6 +167,13 @@ def about_Josue(request: Request):
 @app.get("/help", response_class=HTMLResponse)
 def help(request: Request):
     return templates.TemplateResponse('help.html', {"request": request})
+@app.get("/internet", response_class=HTMLResponse)
+def internet(request: Request):
+    return templates.TemplateResponse('internet.html', {"request": request})
+@app.get("/cobertura", response_class=HTMLResponse)
+def cobertura(request: Request):
+    return templates.TemplateResponse('cobertura.html', {"request": request})
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
