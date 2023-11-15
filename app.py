@@ -173,7 +173,9 @@ def internet(request: Request):
 @app.get("/cobertura", response_class=HTMLResponse)
 def cobertura(request: Request):
     return templates.TemplateResponse('cobertura.html', {"request": request})
-
+@app.get("/familiar", response_class=HTMLResponse)
+def familiar(request: Request):
+    return templates.TemplateResponse('familiar.html', {"request": request})
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
