@@ -2,54 +2,153 @@
 
 
 {% block content %}
-
-
-<div class="card text-center">
-    <img src="{{ url_for('static', path='imagenes/bg-internet.png') }}" class="card-img align-content-center" alt="...">
-    <div class="card-img-overlay align-content-center">
-        <p class="display-1 text-dark" style="font-size: 70px; margin: 40px; margin-top: 80px;">Servicio de internet</p>
-        <p class="display-1 text-dark" style="font-size: 30px; margin-left: 400px; width: 500px;">El internet que necesitas para estar conectado con familiares o amigos, en cualquier momento y lugar de tu casa.</p>
+<!-- Cartas de Servicios -->
+<div class="container-fluid" style="display: grid; place-items: center;">
+    <div class="card-deck m-5" style="width: 70%;">
+            <div class="card expand-icon">
+                <a href="/familiar">
+                <img class="card-img" src="{{ url_for('static', path='imagenes/servicio1.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <div class="card-img-overlay">
+                        <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Familiar</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="card expand-icon">
+                <a href="/entretenimiento">
+                <img class="card-img-top" src="{{ url_for('static', path='imagenes/servicio2.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <h5 class="text-white" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Entretenimiento</h5>
+                </div>
+                </a>
+            </div>
+            <div class="card expand-icon">
+                <a href="/internet">
+                <img class="card-img-top" src="{{ url_for('static', path='imagenes/servicio3.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Internet</h5>
+                </div>
+            </a>
+            </div>
     </div>
+</div>
 
-    <div class="container-fluid">
-        <div class="row" style="margin: 100px;">
-            <div class="col align-text-center" style="margin-top: 50px;">
-                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">Internet sin Teléfono</p>
-                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">Disfruta todos los beneficios de estar conectado a la velocidad de Fast, sin la necesidad de contratar una línea de teléfono para tu casa.</p>
-            </div>
-            <div class="col">
-                <img src="{{ url_for('static', path='imagenes/internet-1.jpg') }}" style="width: 400px;">
-            </div>
-        </div>
-        <div class="row" style="margin: 100px;">
-            <div class="col align-text-center">
-                <img src="{{ url_for('static', path='imagenes/internet-2.jpg') }}" style="width: 400px;">
-            </div>
-            <div class="col" style="margin-top: 50px;">
-                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">Paquetes de Internet</p>
-                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">Los Paquetes Infinitum están diseñados para ofrecerte internet de gran velocidad, entretenimiento y llamadas ilimitadas para tu casa; elige el plan a tu medida: 60, 100, 300, 750 Megas y 1 Giga.</p>
-            </div>
-        </div>
-        <div class="row" style="margin: 100px;">
-            <div class="col align-text-center" style="margin-top: 50px;">
-                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">WiFi Móvil en Fast</p>
-                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">WiFi Móvil en Infinitum te acompaña a donde tú vayas; aeropuertos, restaurantes, parques, plazas públicas y en más de 9,000 Puntos de Acceso.</p>
-            </div>
-            <div class="col">
-                <img src="{{ url_for('static', path='imagenes/internet-3.jpg') }}" style="width: 400px;">
-            </div>
-        </div>
-        <div class="row" style="margin: 100px;">
-            <div class="col align-text-center">
-                <img src="{{ url_for('static', path='imagenes/internet-4.jpg') }}" style="width: 400px;">
-            </div>
-            <div class="col" style="margin-top: 50px;">
-                <p class="display-1 text-dark" style="font-size: 30px; text-align: left;">Extiende tu red</p>
-                <p class="display-1 text-dark" style="font-size: 20px; text-align: left;">Que tu red de conexión a internet llegue a cada rincón de tu casa, con los extensores cobertura WiFi, que funcionan con los módems o equipos puntos de acceso que tenemos para ti; encuéntralos en tu Centro de Atención Telecommunication.</p>
-            </div>
-        </div>
+
+<div class="card-deck my-3 mx-1" style="height: 100%;">
+<!--Carta especifica--->
+<div class="card black-background text-white">
+    <div class="card-body py-4 yellow-background" style="height: 100px;">
+        <h1 class="card-title text-center">
+            50
+            <span class="h5">Megas</span>
+        </h1>
     </div>
+    <div class="card-body py-4 text-center">
+        <h5 class="card-subtitle lead">
+            desde
+            <span class="yellow-text"><span class="h2">$55</span>mil </span>al mes
+        </h5>
+        <div class="m-5"></div>
+        <h6 class="incluye text-center yellow-text black-background">INCLUYE</h6>
+        <p class="info ">Telefonia fija <span class="ilimitadas yellow-text">ILIMITADAS</span></p>
+        <div class="white-bar"></div>
+        <h6 class="info2" style="color: #333333;">Television</h6>
+        <div class="white-bar"></div>
+        <div class="m-5">Adquiere nuestro plan de internet</div>
+        <a href="/comprarP?plan_referencia=Plan%20Familiar%205" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
 
+        <script>
+            function mostrarMensaje() {
+              alert("¡Has comprado el producto!");
+            }
+        </script>
+    </div>
+</div>
+<div class="card black-background text-white">
+    <div class="card-body py-4 yellow-background" style="height: 100px;">
+        <h1 class="card-title text-center">
+            70
+            <span class="h5">Megas</span>
+        </h1>
+    </div>
+    <div class="card-body py-4 text-center">
+        <h5 class="card-subtitle lead">
+            desde
+            <span class="yellow-text"><span class="h2">$75</span>mil </span>al mes
+        </h5>
+        <div class="m-5"></div>
+        <h6 class="incluye text-center yellow-text black-background">INCLUYE</h6>
+        <p class="info ">Telefonia fija <span class="ilimitadas yellow-text">ILIMITADAS</span></p>
+        <div class="white-bar"></div>
+        <h6 class="info2 " style="color: #333333;">Television</h6>
+        <div class="white-bar"></div>
+        <div class="m-5">Adquiere nuestro plan de internet</div>
+        <a href="/comprarP?plan_referencia=Plan%20Familiar%206" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
 
+        <script>
+            function mostrarMensaje() {
+              alert("¡Has comprado el producto!");
+            }
+        </script>
+    </div>
+</div>
+<div class="card black-background text-white">
+    <div class="card-body py-4 yellow-background" style="height: 100px;">
+        <h1 class="card-title text-center">
+            100
+            <span class="h5">Megas</span>
+        </h1>
+    </div>
+    <div class="card-body py-4 text-center">
+        <h5 class="card-subtitle lead">
+            desde
+            <span class="yellow-text"><span class="h2">$100</span>mil </span>al mes
+        </h5>
+        <div class="m-5"></div>
+        <h6 class="incluye text-center yellow-text black-background">INCLUYE</h6>
+        <p class="info ">Telefonia fija <span class="ilimitadas yellow-text">ILIMITADAS</span></p>
+        <div class="white-bar"></div>
+        <h6 class="info2" style="color: #333333;">Television</h6>
+        <div class="white-bar"></div>
+        <div class="m-5">Adquiere nuestro plan de internet</div>
+        <a href="/comprarP?plan_referencia=Plan%20Familiar%207" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
+
+        <script>
+            function mostrarMensaje() {
+              alert("¡Has comprado el producto!");
+            }
+        </script>
+    </div>
+</div>
+<div class="card black-background text-white">
+    <div class="card-body py-4 yellow-background" style="height: 100px;">
+        <h1 class="card-title text-center">
+            200
+            <span class="h5">Megas</span>
+        </h1>
+    </div>
+    <div class="card-body py-4 text-center">
+        <h5 class="card-subtitle lead">
+            desde
+            <span class="yellow-text"><span class="h2">$150</span>mil </span>al mes
+        </h5>
+        <div class="m-5"></div>
+        <h6 class="incluye text-center yellow-text black-background">INCLUYE</h6>
+        <p class="info ">Telefonia fija <span class="ilimitadas yellow-text">ILIMITADAS</span></p>
+        <div class="white-bar"></div>
+        <h6 class="info2" style="color: #333333;">Television</h6>
+        <div class="white-bar"></div>
+        <div class="m-5">Adquiere nuestro plan de internet</div>
+        <a href="/comprarP?plan_referencia=Plan%20Familiar%208" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
+
+        <script>
+            function mostrarMensaje() {
+              alert("¡Has comprado el producto!");
+            }
+        </script>
+    </div>
+</div>
+</div>
 
 {% endblock %}

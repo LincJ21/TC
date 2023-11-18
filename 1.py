@@ -17,30 +17,16 @@ try:
         port=pgport
     )
     print("Conexión establecida")
-    
+
     # Crear un cursor
     cursor = connection.cursor()
 
-    # Sentencia SQL para crear la tabla compras
-    create_table_query = """
-    CREATE TABLE compras (
-        id_compra serial PRIMARY KEY,
-        cedula VARCHAR(255),
-        nombre VARCHAR(255),
-        apellido VARCHAR(255),
-        correo VARCHAR(255),
-        departamento VARCHAR(255),
-        ciudad_pueblo VARCHAR(255),
-        barrio VARCHAR(255),
-        celular VARCHAR(15),
-        numero_tarjeta VARCHAR(255),
-        fecha_expiracion VARCHAR(7),
-        codigo_seguridad VARCHAR(3)
-    );
+    # Añadir la columna "contraseña" a la tabla "compras"
+    query_add_password_column = """
+    ALTER TABLE compras
+    ADD COLUMN contraseña VARCHAR(255);
     """
-    
-    # Ejecutar la consulta
-    cursor.execute(create_table_query)
+    cursor.execute(query_add_password_column)
 
     # Confirmar la transacción
     connection.commit()
@@ -48,8 +34,7 @@ try:
     # Cerrar el cursor y la conexión
     cursor.close()
     connection.close()
-    print("Tabla 'compras' creada correctamente")
+    print("Columna 'contraseña' añadida correctamente a la tabla 'compras'")
 
 except Exception as e:
-    print(f"Error al crear la tabla 'compras': {e}")
-
+    print(f"Error al realizar la consulta: {e}")

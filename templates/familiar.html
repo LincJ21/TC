@@ -1,6 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Cartas de Servicios -->
+<div class="container-fluid" style="display: grid; place-items: center;">
+    <div class="card-deck m-5" style="width: 70%;">
+            <div class="card expand-icon">
+                <a href="/familiar">
+                <img class="card-img" src="{{ url_for('static', path='imagenes/servicio1.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <div class="card-img-overlay">
+                        <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Familiar</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="card expand-icon">
+                <a href="/entretenimiento">
+                <img class="card-img-top" src="{{ url_for('static', path='imagenes/servicio2.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <h5 class="text-white" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Entretenimiento</h5>
+                </div>
+                </a>
+            </div>
+            <div class="card expand-icon">
+                <a href="/internet">
+                <img class="card-img-top" src="{{ url_for('static', path='imagenes/servicio3.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Internet</h5>
+                </div>
+            </a>
+            </div>
+    </div>
+</div>
 
 <div class="card-deck my-3 mx-1" style="height: 100%;">
     <!--Carta especifica--->

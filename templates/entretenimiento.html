@@ -1,6 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Cartas de Servicios -->
+<div class="container-fluid" style="display: grid; place-items: center;">
+    <div class="card-deck m-5" style="width: 70%;">
+            <div class="card expand-icon">
+                <a href="/familiar">
+                <img class="card-img" src="{{ url_for('static', path='imagenes/servicio1.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <div class="card-img-overlay">
+                        <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Familiar</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="card expand-icon">
+                <a href="/entretenimiento">
+                <img class="card-img-top" src="{{ url_for('static', path='imagenes/servicio2.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <h5 class="text-white" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Entretenimiento</h5>
+                </div>
+                </a>
+            </div>
+            <div class="card expand-icon">
+                <a href="/internet">
+                <img class="card-img-top" src="{{ url_for('static', path='imagenes/servicio3.png') }}" alt="Card image cap">
+                <div class="card-img-overlay">
+                    <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Internet</h5>
+                </div>
+            </a>
+            </div>
+    </div>
+</div>
 
 <div class="card text-center text-white">
     <img src="{{ url_for('static', path='imagenes/Entretenimiento-Bg.jpg') }}" class="card-img align-content-center" alt="...">
@@ -43,9 +74,9 @@
                                         <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
                                   </div>
                                   <img src="{{ url_for('static', path='imagenes/Netflix icon.png') }}"  alt="Imagen 6" style="width: 150px ">
-                                  <p class="text-white align-text-center">4 pantallas simultáneas por <span class="text-danger font-weight-bold">$35.000</span></p>
+                                  <p class="text-white align-text-center">¡Películas, programas de TV y más ilimitados!</p>
                                   <div class="modal-footer border-0">
-                                    <a class="btn btn-outline-danger btn-block" type="submit" href="/comprar?id=Netflix">COMPRAR</a>
+                                    <button class="btn btn-outline-danger" type="submit">Más información</button>
                                   </div>
                                 </div>
                             </div>
@@ -71,9 +102,9 @@
                                         <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
                                   </div>
                                   <img src="{{ url_for('static', path='imagenes/disney+.png') }}"  alt="Imagen 6" style="width: 150px ">
-                                  <p class="text-white align-text-center">4 pantallas simultáneas por <span class="text-info font-weight-bold">$30.000</span></p>
+                                  <p class="text-white align-text-center">Disfruta hasta en cuatro pantallas en simultáneo.</p>
                                   <div class="modal-footer border-0">
-                                    <a class="btn btn-outline-light my-2 my-sm-0 btn-block" type="submit" href="/comprar?id=Disney">COMPRAR</a>
+                                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Más información</button>
                                   </div>
                                 </div>
                                 </div>
@@ -102,7 +133,7 @@
                                   <img src="{{ url_for('static', path='imagenes/hbomax.png') }}"  alt="Imagen 6" style="width: 150px; scale: 1.40">
                                   <p class="text-white align-text-center">¡Vive el Entretenimiento!</p>
                                   <div class="modal-footer border-0">
-                                    <button class="btn btn-outline-light my-2 my-sm-0 btn-block" type="submit">COMPRAR</button>
+                                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Más información</button>
                                   </div>
                                 </div>
                             </div>
@@ -130,13 +161,12 @@
                                   <img src="{{ url_for('static', path='imagenes/Paramount_Plus.webp') }}"  alt="Imagen 6" style="width: 150px ">
                                   <p class="text-dark align-text-center">¿Qué vas a ver primero?</p>
                                   <div class="modal-footer border-0">
-                                    <button class="btn btn-outline-primary my-2 my-sm-0 btn-block" type="submit">COMPRAR</button>
+                                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Más información</button>
                                   </div>
                                   </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -157,9 +187,9 @@
                                         <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
                                   </div>
                                   <img src="{{ url_for('static', path='imagenes/Prime_Video.png') }}"  alt="Imagen 6" style="width: 200px ">
-                                  <p class="text-white text-center">Disfruta de miles de series populares y películas exclusivas.</p>
+                                  <p class="text-white align-text-center">Disfruta de miles de series populares y películas exclusivas.</p>
                                   <div class="modal-footer border-0">
-                                    <button class="btn btn-outline-info my-2 my-sm-0 btn-block" type="submit">COMPRAR</button>
+                                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Más información</button>
                                   </div>
                                 </div>
                             </div>
@@ -169,6 +199,5 @@
                 </div>
             </div>
         </div>
-    </div>
 
 {% endblock %}
