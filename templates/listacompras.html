@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container mt-4">
-        <h2 class="text-center">Consulta de Producto</h2>
+        <h1 class="text-center">Consulta de Producto</h1>
 
         <form class="container-md-4" action="/consulta" method="post">
             <div class="form-group">
@@ -11,136 +11,144 @@
             </div>
             <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
-        
+
+        <h2 class="text-center">[Plan Familiar]</h2>
+        <div class="black-bar"></div>
         {% if productos_familiar %}
-        <h3 class="mt-4">Productos Familiares:</h3>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Nombre Producto</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Fecha Creación</th>
-                        <th>Fecha Expiración</th>
-                        <th>Estado de producto</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for producto in productos_familiar %}
-                    <tr>
-                        <td>{{ producto[1] }}</td>
-                        <td>{{ producto[2] }}</td>
-                        <td>{{ producto[4] }}</td>
-                        <td>{{ producto[5] }}</td>
-                        <td>{{ producto[6] }}</td>
-                        <td>{{ producto[7] }}</td>
-                        <td>{{ producto[8] }}</td>
-                        <td>{{ producto[9] }}</td>
-                        <td>
-                            <form action="/cancelar_servicio" method="post" style="display:inline;">
-                                <input type="hidden" name="id_producto" value="{{ producto[3] }}">
-                                <button type="submit" class="btn btn-danger btn-sm">Cancelar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+            <h3 class="mt-4">Productos Familiares:</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Nombre Producto</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Expiración</th>
+                            <th>Estado de producto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos_familiar %}
+                            <tr>
+                                <td>{{ producto[2] }}</td>
+                                <td>{{ producto[3] }}</td>
+                                <td>{{ producto[5] }}</td>
+                                <td>{{ producto[6] }}</td>
+                                <td>{{ producto[7] }}</td>
+                                <td>{{ producto[8] }}</td>
+                                <td>{{ producto[9] }}</td>
+                                <td>{{ producto[10] }}</td>
+                                <td>
+                                    {% if producto[10] == 'Activo' %}
+                                        <a href="/iniciar_sesion?bd=Familiar&id_producto={{ producto[0] }}&cedula={{ producto[1] }}&nombre_del_producto={{ producto[5] }}" class="btn btn-danger btn-sm">Cancelar</a>
+                                    {% elif producto[10] == 'Cancelado' %}
+                                        <a href="/renovar_servicio?id_producto={{ producto[0] }}" class="btn btn-success btn-sm">Renovar</a>
+                                    {% endif %}  
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
+        <div class="black-bar"></div>
 
-        <!-- Después de la sección de Productos Familiares, agrega lo siguiente: -->
-
+        <h2 class="text-center">[Plan de internet]</h2>
+        <div class="black-bar"></div>
         {% if productos_internet %}
-        <h3 class="mt-4">Productos de Internet:</h3>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Nombre Producto</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Fecha Creación</th>
-                        <th>Fecha Expiración</th>
-                        <th>Estado de producto</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for producto in productos_internet %}
-                    <tr>
-                        <td>{{ producto[1] }}</td>
-                        <td>{{ producto[2] }}</td>
-                        <td>{{ producto[4] }}</td>
-                        <td>{{ producto[5] }}</td>
-                        <td>{{ producto[6] }}</td>
-                        <td>{{ producto[7] }}</td>
-                        <td>{{ producto[8] }}</td>
-                        <td>{{ producto[9] }}</td>
-                        <td>
-                            <form action="/cancelar_servicio" method="post" style="display:inline;">
-                                <input type="hidden" name="id_producto" value="{{ producto[3] }}">
-                                <button type="submit" class="btn btn-danger btn-sm">Cancelar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+            <h3 class="mt-4">Productos de Internet:</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Nombre Producto</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Expiración</th>
+                            <th>Estado de producto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos_internet %}
+                            <tr>
+                                <td>{{ producto[2] }}</td>
+                                <td>{{ producto[3] }}</td>
+                                <td>{{ producto[5] }}</td>
+                                <td>{{ producto[6] }}</td>
+                                <td>{{ producto[7] }}</td>
+                                <td>{{ producto[8] }}</td>
+                                <td>{{ producto[9] }}</td>
+                                <td>{{ producto[10] }}</td>
+                                <td>
+                                    {% if producto[10] == 'Activo' %}
+                                        <a href="/iniciar_sesion?bd=Internet&id_producto={{ producto[0] }}&cedula={{ producto[1] }}&nombre_del_producto={{ producto[5] }}" class="btn btn-danger btn-sm">Cancelar</a>
+                                    {% elif producto[10] == 'Cancelado' %}
+                                        <a href="/renovar_servicio?id_producto={{ producto[0] }}" class="btn btn-success btn-sm">Renovar</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
+        <div class="black-bar"></div>
 
-        <!-- Ahora, para la sección de Productos de Entretenimiento: -->
-
+        <h2 class="text-center">[Entretenimiento]</h2>
+        <div class="black-bar"></div>
         {% if productos_entretenimiento %}
-        <h3 class="mt-4">Productos de Entretenimiento:</h3>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Nombre Producto</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Fecha Creación</th>
-                        <th>Fecha Expiración</th>
-                        <th>Estado de producto</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for producto in productos_entretenimiento %}
-                    <tr>
-                        <td>{{ producto[1] }}</td>
-                        <td>{{ producto[2] }}</td>
-                        <td>{{ producto[4] }}</td>
-                        <td>{{ producto[5] }}</td>
-                        <td>{{ producto[6] }}</td>
-                        <td>{{ producto[7] }}</td>
-                        <td>{{ producto[8] }}</td>
-                        <td>{{ producto[9] }}</td>
-                        <td>
-                            <form action="/cancelar_servicio" method="post" style="display:inline;">
-                                <input type="hidden" name="id_producto" value="{{ producto[3] }}">
-                                <button type="submit" class="btn btn-danger btn-sm">Cancelar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+            <h3 class="mt-4">Productos de Entretenimiento:</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Nombre Producto</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Expiración</th>
+                            <th>Estado de producto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos_entretenimiento %}
+                            <tr>
+                                <td>{{ producto[2] }}</td>
+                                <td>{{ producto[3] }}</td>
+                                <td>{{ producto[5] }}</td>
+                                <td>{{ producto[6] }}</td>
+                                <td>{{ producto[7] }}</td>
+                                <td>{{ producto[8] }}</td>
+                                <td>{{ producto[9] }}</td>
+                                <td>{{ producto[10] }}</td>
+                                <td>
+                                    {% if producto[10] == 'Activo' %}
+                                        <a href="/iniciar_sesion?bd=Entretenimiento&id_producto={{ producto[0] }}&cedula={{ producto[1] }}&nombre_del_producto={{ producto[5] }}" class="btn btn-danger btn-sm">Cancelar</a>
+                                    {% elif producto[10] == 'Cancelado' %}
+                                        <a href="/renovar_servicio?id_producto={{ producto[0] }}" class="btn btn-success btn-sm">Renovar</a>
+                                    {% endif %} 
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
+        <div class="black-bar"></div>
 
         {% if error %}
-        <p class="mt-4" style="color: red;">{{ error }}</p>
+            <p class="mt-4" style="color: red;">{{ error }}</p>
         {% endif %}
     </div>
 {% endblock %}

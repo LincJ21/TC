@@ -21,12 +21,26 @@ try:
     # Crear un cursor
     cursor = connection.cursor()
 
-    # Añadir la columna "contraseña" a la tabla "compras"
-    query_add_password_column = """
-    ALTER TABLE compras
-    ADD COLUMN contraseña VARCHAR(255);
+    # Añadir la columna "petición" a la tabla "Familiar"
+    query_add_peticion_column_familiar = """
+    ALTER TABLE Familiar
+    ADD COLUMN peticion TEXT;
     """
-    cursor.execute(query_add_password_column)
+    cursor.execute(query_add_peticion_column_familiar)
+
+    # Añadir la columna "petición" a la tabla "Internet"
+    query_add_peticion_column_internet = """
+    ALTER TABLE Internet
+    ADD COLUMN peticion TEXT;
+    """
+    cursor.execute(query_add_peticion_column_internet)
+
+    # Añadir la columna "petición" a la tabla "Entretenimiento"
+    query_add_peticion_column_entretenimiento = """
+    ALTER TABLE Entretenimiento
+    ADD COLUMN peticion TEXT;
+    """
+    cursor.execute(query_add_peticion_column_entretenimiento)
 
     # Confirmar la transacción
     connection.commit()
@@ -34,7 +48,7 @@ try:
     # Cerrar el cursor y la conexión
     cursor.close()
     connection.close()
-    print("Columna 'contraseña' añadida correctamente a la tabla 'compras'")
+    print("Columna 'petición' añadida correctamente a las tablas 'Familiar', 'Internet' y 'Entretenimiento'")
 
 except Exception as e:
     print(f"Error al realizar la consulta: {e}")

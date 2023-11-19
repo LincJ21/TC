@@ -4,22 +4,34 @@
 <div class="col-md-4 container mt-4">
     <h2>Iniciar Sesión</h2>
 
-    <form id="inicio-sesion-form" action="/login" method="post">
+    <form id="cancelar-servicio-form" action="/cancelar_servicio" method="post">
         <div class="form-group">
             <label for="cedula">Cedula:</label>
-            <input type="text" class="form-control" name="cc" placeholder="Ingrese su cedula" required>
+            <input type="text" class="form-control" name="cedula" value="{{ cedula }}" readonly>
         </div>
         <div class="form-group">
             <label for="contraseña">Contraseña:</label>
-            <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña" required>
+            <input type="password" class="form-control" name="contraseña" placeholder="Ingrese su contraseña" required>
         </div>
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        <div>¿No tienes una cuenta?</div>
-        <div><a id="registro_usuario-link" href="/registro_usuario">¡Créala!</a></div> 
+        <div class="form-group">
+            <label for="plan_referencia">Tipo de servicio:</label>
+            <input type="text" class="form-control" name="bd" value="{{ bd }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="plan_referencia">Nombre del Producto:</label>
+            <input type="text" class="form-control" name="plan_referencia" value="{{ nombre_del_producto }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="plan_referencia">ID De la compra:</label>
+            <input type="text" class="form-control" name="id_producto" value="{{ id_producto }}" readonly>
+        </div>
+        <button type="submit" class="btn btn-primary">Cancelar Servicio</button>
+        <div>¿Se olvidó de la contraseña?</div>
+        <div><a id="consulta-contraseña-link" href="/consulta_contraseña">¡Consultar contraseña!</a></div> 
     </form>
+
     {% if error %}
     <p style="color: red;">{{ error }}</p>
     {% endif %}
-    
 </div>
 {% endblock %}

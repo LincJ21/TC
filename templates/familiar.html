@@ -54,13 +54,7 @@
                 <h6 class="info2 ">Television <span class="ilimitadas text-primary">150</span> CANALES </h6>
                 <div class="white-bar"></div>
                 <div class="m-5">Adquiere nuestro combo familiar</div>
-                <a href="/comprar?id=PlanFamiliar1" class="btn btn-outline-warning btn-lg mt-3" >CONTRATAR</a>
-
-                <script>
-                    function mostrarMensaje() {
-                      alert("¡Has comprado el producto!");
-                    }
-                </script>
+                <a href="/comprarP?plan_referencia=Plan%20Familiar%201" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
             </div>
         </div>
         <div class="card black-background text-white">
@@ -82,13 +76,7 @@
                 <h6 class="info2 ">Television <span class="ilimitadas text-primary">200</span> CANALES </h6>
                 <div class="white-bar"></div>
                 <div class="m-5">Adquiere nuestro combo familiar</div>
-                <a href="/comprar?id=PlanFamiliar2" class="btn btn-outline-warning btn-lg mt-3" >CONTRATAR</a>
-
-                <script>
-                    function mostrarMensaje() {
-                      alert("¡Has comprado el producto!");
-                    }
-                </script>
+                <a href="/comprarP?plan_referencia=Plan%20Familiar%202" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
             </div>
         </div>
         <div class="card black-background text-white">
@@ -110,13 +98,7 @@
                 <h6 class="info2 ">Television <span class="ilimitadas text-primary">250</span> CANALES </h6>
                 <div class="white-bar"></div>
                 <div class="m-5">Adquiere nuestro combo familiar</div>
-                <a href="/comprar?id=PlanFamiliar3" class="btn btn-outline-warning btn-lg mt-3" >CONTRATAR</a>
-
-                <script>
-                    function mostrarMensaje() {
-                      alert("¡Has comprado el producto!");
-                    }
-                </script>
+                <a href="/comprarP?plan_referencia=Plan%20Familiar%203" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
             </div>
         </div>
         <div class="card black-background text-white">
@@ -138,17 +120,16 @@
                 <h6 class="info2 ">Television <span class="ilimitadas text-primary">300</span> CANALES </h6>
                 <div class="white-bar"></div>
                 <div class="m-5">Adquiere nuestro combo familiar</div>
-                <a href="/comprar?id=PlanFamiliar4" class="btn btn-outline-warning btn-lg mt-3" >CONTRATAR</a>
+                <a href="/comprarP?plan_referencia=Plan%20Familiar%204" class="btn btn-outline-warning btn-lg mt-3">CONTRATAR</a>
 
-                <script>
-                    function mostrarMensaje() {
-                      alert("¡Has comprado el producto!");
-                    }
-                </script>
             </div>
         </div>
-
 </div>
-    
+<script>
+    function enviarPlanReferencia(planReferencia) {
+        // Redirecciona a la página de compra con el plan_referencia como parámetro
+        window.location.href = "/comprarP?plan_referencia=" + encodeURIComponent(planReferencia);
+    }
+</script>  
 
 {% endblock %}

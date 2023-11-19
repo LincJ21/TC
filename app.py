@@ -34,7 +34,7 @@ async def consulta(request: Request, cc: str = Form(...)):
                 # Consultar productos en la tabla Familiar
 
                 query_familiar = f"""
-                    SELECT c.id_compra, c.nombre, c.apellido, f.id_producto, p.nombre AS nombre_producto,
+                    SELECT c.id_compra, c.cedula, c.nombre, c.apellido, f.id_producto, p.nombre AS nombre_producto,
                         p.descripcion, p.precio, f.fecha_creacion, f.fecha_expiracion, f.estado_cuenta
                     FROM compras c
                     INNER JOIN Familiar f ON c.id_compra = f.id_compra
@@ -47,7 +47,7 @@ async def consulta(request: Request, cc: str = Form(...)):
 
                 # Consultar productos en la tabla Internet
                 query_internet = f"""
-                    SELECT c.id_compra, c.nombre, c.apellido, f.id_producto, p.nombre AS nombre_producto,
+                    SELECT c.id_compra, c.cedula, c.nombre, c.apellido, f.id_producto, p.nombre AS nombre_producto,
                         p.descripcion, p.precio, f.fecha_creacion, f.fecha_expiracion, f.estado_cuenta
                     FROM compras c
                     INNER JOIN Internet f ON c.id_compra = f.id_compra
@@ -59,7 +59,7 @@ async def consulta(request: Request, cc: str = Form(...)):
 
                 # Consultar productos en la tabla Entretenimiento
                 query_entretenimiento = f"""
-                    SELECT c.id_compra, c.nombre, c.apellido, f.id_producto, p.nombre AS nombre_producto,
+                    SELECT c.id_compra, c.cedula, c.nombre, c.apellido, f.id_producto, p.nombre AS nombre_producto,
                         p.descripcion, p.precio, f.fecha_creacion, f.fecha_expiracion, f.estado_cuenta
                     FROM compras c
                     INNER JOIN Entretenimiento f ON c.id_compra = f.id_compra
@@ -81,6 +81,99 @@ async def consulta(request: Request, cc: str = Form(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al realizar la consulta: {e}")
 
+# Ruta para manejar las solicitudes POST a /cancelar_servicio
+@app.post("/cancelar_servicio")
+async def cancelar_servicio(request: Request, id_producto: int = Form(...), contraseña: str = Form(...)):
+    if request.method == 'POST':
+        # Procesar la información del formulario si es una solicitud POST
+        form_data = await request.form()
+        cedula = form_data.get('cedula')
+        contraseña = form_data.get('contraseña')
+        plan_referencia = form_data.get('plan_referencia')
+        id_producto = form_data.get('id_producto')
+        bd = form_data.get('bd')
+
+        try:
+            connection = psycopg2.connect(**db_params)
+            cursor = connection.cursor()
+
+            # Verificar la contraseña
+            query_verificar_contraseña = f"SELECT * FROM compras WHERE cedula = '{cedula}' AND id_compra = {id_producto} AND contraseña = '{contraseña}';"
+            cursor.execute(query_verificar_contraseña)
+            compra = cursor.fetchone()
+
+            if compra:
+                # Actualizar el estado del producto a "Pendiente"
+                query_actualizar_estado = f"UPDATE {bd} SET estado_cuenta = 'Pendiente' WHERE id_compra = {id_producto};"
+                cursor.execute(query_actualizar_estado)
+
+                # Actualizar la columna "peticion" con el mensaje de cancelación
+                query_actualizar_peticion = f"UPDATE {bd} SET peticion = 'cancelación del producto' WHERE id_compra = {id_producto};"
+                cursor.execute(query_actualizar_peticion)
+                # Confirmar la transacción
+                connection.commit()
+
+                return templates.TemplateResponse(
+                    "home.html", {"request": request, "error": None, "success": "Servicio cancelado exitosamente"}
+                )
+            else:
+                raise HTTPException(status_code=400, detail="Contraseña incorrecta")
+
+        except Exception as e:
+            print(f"Error al cancelar el servicio: {e}")
+            raise HTTPException(status_code=500, detail="Error al cancelar el servicio")
+
+        finally:
+            # Cerrar el cursor y la conexión
+            cursor.close()
+            connection.close()
+
+    elif request.method == 'GET':
+        # Manejar la lógica si es una solicitud GET
+        cedula = request.query_params.get('cedula')
+        nombre_del_producto = request.query_params.get('nombre_del_producto')
+        id_producto = request.query_params.get('id_producto')
+        bd = request.query_params.get('bd')
+
+        return templates.TemplateResponse(
+            "cancelar_servicio.html",
+            {"request": request, "cedula": cedula, "nombre_del_producto": nombre_del_producto, "id_producto": id_producto, "bd": bd, "error": None}
+        )
+
+    # Manejar otras situaciones
+    return templates.TemplateResponse("home.html", {"request": request, "error": "Error desconocido", "success": None})
+    
+
+
+@app.route('/iniciar_sesion', methods=['GET', 'POST'])
+async def iniciar_sesion(request: Request):
+    if request.method == 'POST':
+        # Procesar la información del formulario si es una solicitud POST
+        form_data = await request.form()
+        id_producto = form_data.get('id_producto')
+        nombre_del_producto = form_data.get('nombre_del_producto')
+        cedula = form_data.get('cedula')
+        bd = form_data.get('bd')
+        if not id_producto or not nombre_del_producto:
+            return templates.TemplateResponse(
+                "listacompras.html",
+                {"request": request, "error": "Error al procesar la cancelación"}
+            )
+        else:
+            return templates.TemplateResponse(
+                "inicio_sesion.html", {"request": request, "id_producto": id_producto, "nombre_del_producto": nombre_del_producto,"cedula":cedula, "bd":bd, "error": None})
+
+    elif request.method == 'GET':
+        
+        # Manejar la lógica si es una solicitud GET
+        id_producto = request.query_params.get('id_producto')
+        nombre_del_producto = request.query_params.get('nombre_del_producto')
+        cedula=request.query_params.get('cedula')
+        bd = request.query_params.get('bd')
+        return templates.TemplateResponse("inicio_sesion.html", {"request": request, "id_producto": id_producto, "nombre_del_producto": nombre_del_producto,"cedula":cedula, "bd":bd, "error": None})
+
+    # Manejar otras situaciones
+    return templates.TemplateResponse("listacompras.html", {"request": request, "error": "Error desconocido"})
 
 def clasificar(cc, referencia_p):
     try:
@@ -121,18 +214,18 @@ def clasificar(cc, referencia_p):
                     # Insertar en la tabla correspondiente según la categoría del producto
                     if categoria_producto == 1:  # Familiar
                         query_insert = f"""
-                            INSERT INTO Familiar (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta)
-                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activo');
+                            INSERT INTO Familiar (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta, peticion)
+                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Pendiente','Activando el producto');
                         """
                     elif categoria_producto == 2:  # Internet
                         query_insert = f"""
-                            INSERT INTO Internet (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta)
-                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activo');
+                            INSERT INTO Internet (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta, peticion)
+                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activo', 'Activando el producto');
                         """
                     elif categoria_producto == 3:  # Entretenimiento
                         query_insert = f"""
-                            INSERT INTO Entretenimiento (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta)
-                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activo');
+                            INSERT INTO Entretenimiento (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta, peticion)
+                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activo', 'Activando el producto');
                         """
 
                     # Ejecutar la consulta de inserción
@@ -178,35 +271,6 @@ def compra_ya_registrada(cedula):
     except Exception as e:
         print(f"Error al verificar si la compra ya está registrada: {e}")
         return False
-
-
-def cargar_datos(cc):
-    try:
-        # Establecer la conexión a la base de datos usando los parámetros
-        connection = psycopg2.connect(**db_params)
-        cursor = connection.cursor()
-        # Cambia la consulta SQL para buscar un usuario por número de cédula
-        query = "SELECT cc, nombre, apellido, telefono, correo FROM usuarios WHERE cc = %s"
-        cursor.execute(query, (cc,))
-        user = cursor.fetchone()
-        if user:
-            user_cc, user_name, user_ape, user_cell, user_email = user
-        else:
-            user_cc, user_name, user_ape, user_cell, user_email = None, None, None, None, None
-        cursor.close()
-        connection.close()
-        # Imprime los valores antes de retornarlos
-        print("user_cc:", user_cc)
-        print("user_name:", user_name)
-        print("user_ape:", user_ape)
-        print("user_cell:", user_cell)
-        print("user_email:", user_email)
-    except Exception as e:
-        print(f"Error al realizar la consulta: {e}")
-        user_cc, user_name, user_ape, user_cell, user_email = None, None, None, None, None
-    return user_cc, user_name, user_ape, user_cell, user_email
-
-
 
 def guardar_compra(cedula, nombre, apellido, correo, departamento, ciudad_pueblo, barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad):
     try:
@@ -262,25 +326,6 @@ async def comprar(request: Request):
 
     # Manejar otras situaciones
     return templates.TemplateResponse("comprar.html", {"request": request, "error": "Error desconocido", "success": None, "plan_referencia": None})
-
-@app.get('/delete/{id}')
-async def delete_users(request: Request, id_compra: int):
-    try:
-        connection = psycopg2.connect(**db_params)
-        cursor = connection.cursor()
-
-        # Consulta SQL para eliminar la compra por ID
-        query = "DELETE FROM compras WHERE id_compra = %s"
-        cursor.execute(query, (id_compra,))
-
-        connection.commit()
-        cursor.close()
-        connection.close()
-
-        return templates.TemplateResponse("listacompras.html", {"request": request, "success": "¡Compra cancelada!"})
-    except Exception as e:
-        print(f"Error al cancelar la compra en la base de datos: {e}")
-        return templates.TemplateResponse("listacompras.html", {"request": request, "ERROR": "Error al cancelar la compra"})
 
 
 @app.get("/", response_class=HTMLResponse)

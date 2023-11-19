@@ -337,17 +337,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/help">Ayuda</a>
                 </li>
-                {% if user_data %}
-                    <li class="nav-item">
-                        <a id="perfil-link" class="nav-link" href="/mi_cuenta">Mi Cuenta</a>
-                    </li>
-                {% else %}
-                    <!-- Incluye un marcador de posición para el enlace cuando el usuario no ha iniciado sesión -->
-                    <li class="nav-item">
-                        <a id="perfil-link" class="nav-link" style="display: none;" href="/mi_cuenta">Mi Cuenta</a>
-                    </li>
-                {% endif %}
-                
+                <li class="nav-item">
+                    <a id="perfil-link" class="nav-link" href="/listacompras">Consulta</a>
+                </li>
             </ul>
         </div>
     </div>
