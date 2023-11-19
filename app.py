@@ -376,5 +376,9 @@ def familiar(request: Request):
 @app.get("/cobertura", response_class=HTMLResponse)
 def cobertura(request: Request):
     return templates.TemplateResponse('cobertura.html', {"request": request})
+@app.get("/inicio_sesion_admin", response_class=HTMLResponse)
+def inicio_sesion_admin(request: Request):
+    return templates.TemplateResponse('inicio_sesion_admin.html', {"request": request})
+
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", 8000)))
