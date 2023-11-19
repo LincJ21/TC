@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="black-bar"></div>
+    <h3 class="mt-4">Productos Familiares:</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="text-warning" style="background-color: #383434;">
+                        <th>ID Familiar</th>
+                        <th>ID Compra</th>
+                        <th>ID Producto</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Expiración</th>
+                        <th>Estado Cuenta</th>
+                        <th>Petición</th>
+                    </tr>
+                </thead>            
+        <tbody>
+            {% for familia in datos_familia %}
+                <tr>
+                    <td>{{ familia[0] }}</td>
+                    <td>{{ familia[1] }}</td>
+                    <td>{{ familia[2] }}</td>
+                    <td>{{ familia[3] }}</td>
+                    <td>{{ familia[4] }}</td>
+                    <td>{{ familia[5] }}</td>
+                    <td>{{ familia[6] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="black-bar"></div>
+    <h3 class="mt-4">Productos De Internet:</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="text-warning" style="background-color: #383434;">
+                        <th>ID Familiar</th>
+                        <th>ID Compra</th>
+                        <th>ID Producto</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Expiración</th>
+                        <th>Estado Cuenta</th>
+                        <th>Petición</th>
+                    </tr>
+                </thead>            
+        <tbody>
+            {% for familia in datos_internet %}
+                <tr>
+                    <td>{{ familia[0] }}</td>
+                    <td>{{ familia[1] }}</td>
+                    <td>{{ familia[2] }}</td>
+                    <td>{{ familia[3] }}</td>
+                    <td>{{ familia[4] }}</td>
+                    <td>{{ familia[5] }}</td>
+                    <td>{{ familia[6] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="black-bar"></div>
+    <h3 class="mt-4">Productos de Entretenimineto:</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="text-warning" style="background-color: #383434;">
+                        <th>ID Familiar</th>
+                        <th>ID Compra</th>
+                        <th>ID Producto</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Expiración</th>
+                        <th>Estado Cuenta</th>
+                        <th>Petición</th>
+                    </tr>
+                </thead>            
+        <tbody>
+            {% for familia in datos_entretenimiento %}
+                <tr>
+                    <td>{{ familia[0] }}</td>
+                    <td>{{ familia[1] }}</td>
+                    <td>{{ familia[2] }}</td>
+                    <td>{{ familia[3] }}</td>
+                    <td>{{ familia[4] }}</td>
+                    <td>{{ familia[5] }}</td>
+                    <td>{{ familia[6] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -18,6 +18,69 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+
+async def Tabla(request: Request):
+    try:
+        # Establecer la conexión a la base de datos
+        with psycopg2.connect(**db_params) as connection, connection.cursor() as cursor:
+            # Consultar todos los datos de la tabla Familia
+            query_familia = "SELECT * FROM familiar"
+            cursor.execute(query_familia)
+            datos_familia = cursor.fetchall()
+
+            # Consultar todos los datos de la tabla Internet
+            query_internet = "SELECT * FROM internet"
+            cursor.execute(query_internet)
+            datos_internet = cursor.fetchall()
+
+            # Consultar todos los datos de la tabla Entretenimiento
+            query_entretenimiento = "SELECT * FROM entretenimiento"
+            cursor.execute(query_entretenimiento)
+            datos_entretenimiento = cursor.fetchall()
+
+    except Exception as e:
+        # Manejar errores de conexión o consulta
+        raise HTTPException(status_code=500, detail=f"Error al obtener datos: {e}")
+
+    # Renderizar la plantilla HTML con los datos obtenidos
+    return templates.TemplateResponse(
+        "admin.html",
+        {"request": request, "datos_familia": datos_familia, "datos_internet": datos_internet, "datos_entretenimiento": datos_entretenimiento}
+    )
+
+
+def autenticar_administrador(codigo: str, contraseña: str):
+    try:
+        # Establecer la conexión a la base de datos
+        with psycopg2.connect(**db_params) as connection, connection.cursor() as cursor:
+            # Consultar la tabla de administradores
+            query = "SELECT * FROM administradores WHERE codigo = %s AND contraseña = %s"
+            cursor.execute(query, (codigo, contraseña))
+            administrador = cursor.fetchone()
+
+            # Si se encuentra el administrador en la base de datos y las contraseñas coinciden
+            if administrador:
+                return True
+            else:
+                return False
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al autenticar administrador: {e}")
+    
+@app.post("/administrador")
+async def iniciar_sesion_administrador(request: Request, codigo: str = Form(...), contraseña: str = Form(...)):
+    try:
+        # Llama a la función de autenticación
+        if autenticar_administrador(codigo, contraseña):
+            # Llama a la función Tabla
+            return await Tabla(request)
+        else:
+            raise HTTPException(status_code=401, detail="Código o contraseña incorrectos")
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error interno del servidor: {e}")
+    
 @app.post("/consulta")
 async def consulta(request: Request, cc: str = Form(...)):
     try:
@@ -143,6 +206,43 @@ async def cancelar_servicio(request: Request, id_producto: int = Form(...), cont
     # Manejar otras situaciones
     return templates.TemplateResponse("home.html", {"request": request, "error": "Error desconocido", "success": None})
     
+@app.route("/nuevo_contrato", methods=['GET', 'POST'])
+async def nuevo_contrato(request: Request):
+    if request.method == 'POST':
+        form_data = await request.form()
+        cedula = form_data.get('cedula')
+        contraseña = form_data.get('contraseña')
+        plan_referencia = form_data.get('plan_referencia')
+        try:
+            
+            connection = psycopg2.connect(**db_params)
+            cursor = connection.cursor()
+
+            # Verificar la contraseña
+            query_verificar_contraseña = f"SELECT * FROM compras WHERE cedula = '{cedula}'  AND contraseña = '{contraseña}';"
+            cursor.execute(query_verificar_contraseña)
+            compra = cursor.fetchone()
+
+            if compra:
+                # Llama a tu función clasificar
+                clasificar(cedula, plan_referencia)
+                # Si todo va bien, puedes retornar una respuesta exitosa o redirigir a otra página
+                return templates.TemplateResponse("listacompras.html", {"request": request})
+            else:
+                raise HTTPException(status_code=400, detail="Contraseña incorrecta")
+
+        except Exception as e:
+            # Manejar las excepciones según tus necesidades
+            return templates.TemplateResponse("error.html", {"request": request, "error_message": str(e)})
+    elif request.method == 'GET':
+        plan_referencial = request.query_params.get('plan_referencia')
+        return templates.TemplateResponse(
+            "nuevo_contrato.html",
+            {"request": request, "plan_referencia": plan_referencial, "error": None}
+        )
+
+    # Manejar otras situaciones
+    return templates.TemplateResponse("home.html", {"request": request, "error": "Error desconocido", "success": None})
 
 
 @app.route('/iniciar_sesion', methods=['GET', 'POST'])
@@ -215,17 +315,17 @@ def clasificar(cc, referencia_p):
                     if categoria_producto == 1:  # Familiar
                         query_insert = f"""
                             INSERT INTO Familiar (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta, peticion)
-                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Pendiente','Activando el producto');
+                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activando','Activando el producto');
                         """
                     elif categoria_producto == 2:  # Internet
                         query_insert = f"""
                             INSERT INTO Internet (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta, peticion)
-                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activo', 'Activando el producto');
+                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activando', 'Activando el producto');
                         """
                     elif categoria_producto == 3:  # Entretenimiento
                         query_insert = f"""
                             INSERT INTO Entretenimiento (id_compra, id_producto, fecha_creacion, fecha_expiracion, estado_cuenta, peticion)
-                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activo', 'Activando el producto');
+                            VALUES ({id_compra}, {id_producto}, '{fecha_creacion}', '{fecha_expiracion}', 'Activando', 'Activando el producto');
                         """
 
                     # Ejecutar la consulta de inserción
@@ -254,6 +354,7 @@ def clasificar(cc, referencia_p):
         connection.close()
 
 
+
 def compra_ya_registrada(cedula):
     try:
         connection = psycopg2.connect(**db_params)
@@ -272,7 +373,7 @@ def compra_ya_registrada(cedula):
         print(f"Error al verificar si la compra ya está registrada: {e}")
         return False
 
-def guardar_compra(cedula, nombre, apellido, correo, departamento, ciudad_pueblo, barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad):
+def guardar_compra(cedula, nombre, apellido, correo, departamento, ciudad_pueblo, barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad, contraseña):
     try:
         connection = psycopg2.connect(**db_params)
         cursor = connection.cursor()
@@ -280,12 +381,12 @@ def guardar_compra(cedula, nombre, apellido, correo, departamento, ciudad_pueblo
         query = """
             INSERT INTO compras (
                 cedula, nombre, apellido, correo, departamento, ciudad_pueblo,
-                barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad, contraseña
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         cursor.execute(query, (
             cedula, nombre, apellido, correo, departamento, ciudad_pueblo,
-            barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad
+            barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad, contraseña
         ))
         connection.commit()
         cursor.close()
@@ -310,12 +411,13 @@ async def comprar(request: Request):
         numero_tarjeta = form_data['numero_tarjeta']
         fecha_expiracion = form_data['fecha_expiracion']
         codigo_seguridad = form_data['codigo_seguridad']
+        contraseña = form_data['contraseña']
         plan_referencia = form_data['plan_referencia']
         if compra_ya_registrada(cc):
             return templates.TemplateResponse("comprar.html", {"request": request, "error": "Ya usted contrato el servicio", "success": None})
         else:
             # Registrar la compra en la base de datos
-            guardar_compra(cc, nombre, apellido, email, departamento, ciudad_pueblo, barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad)
+            guardar_compra(cc, nombre, apellido, email, departamento, ciudad_pueblo, barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad, contraseña)
             clasificar(cc, plan_referencia)
             return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": "Compra registrada exitosamente"})
 
@@ -331,6 +433,9 @@ async def comprar(request: Request):
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse('home.html', {"request": request})
+@app.get("/administrador", response_class=HTMLResponse)
+def administrador(request: Request):
+    return templates.TemplateResponse('inicio_sesion_admin.html', {"request": request})
 @app.get("/listacompras", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse('listacompras.html', {"request": request})
@@ -381,4 +486,4 @@ def inicio_sesion_admin(request: Request):
     return templates.TemplateResponse('inicio_sesion_admin.html', {"request": request})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", 8000)))
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))

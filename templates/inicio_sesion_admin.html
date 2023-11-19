@@ -4,10 +4,10 @@
 <div class="col-md-4 container mt-4">
     <h2>Iniciar Sesión</h2>
 
-    <form id="cancelar-servicio-form" action="/cancelar_servicio" method="post">
-        <div class="form-group">
-            <label for="cedula">Cédula:</label>
-            <input type="text" class="form-control" name="cedula" value="{{ cedula }}" readonly>
+    <form id="cancelar-servicio-form" action="/administrador" method="post">
+        <div class="form-group">     
+            <label for="nombre">Codigo:</label>
+            <input type="text" class="form-control" name="codigo" placeholder="Cedula" required>
         </div>
         <div class="form-group">
             <label for="contraseña">Contraseña:</label>
