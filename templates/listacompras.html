@@ -7,19 +7,22 @@
         <form class="container-md-4" action="/consulta" method="post">
             <div class="form-group">
                 <label for="cedula">Cedula:</label>
-                <input type="text" class="form-control" name="cc" placeholder="Ingrese su cedula" required>
+                <div class="form-inline">
+                    <input type="text" class="form-control" style="width: 1000px;" name="cc" placeholder="Ingrese su cedula" required>
+                    <button type="submit" class="btn btn-warning mx-3">Buscar</button>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
 
-        <h2 class="text-center">[Plan Familiar]</h2>
-        <div class="black-bar"></div>
+        <p class="text-center my-4 display-4">Productos adquiridos</p>
+
         {% if productos_familiar %}
+        <div class="black-bar"></div>
             <h3 class="mt-4">Productos Familiares:</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="text-warning" style="background-color: #383434;">
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Nombre Producto</th>
@@ -55,16 +58,15 @@
                 </table>
             </div>
         {% endif %}
-        <div class="black-bar"></div>
 
-        <h2 class="text-center">[Plan de internet]</h2>
-        <div class="black-bar"></div>
+
         {% if productos_internet %}
+        <div class="black-bar"></div>
             <h3 class="mt-4">Productos de Internet:</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="text-warning" style="background-color: #383434;">
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Nombre Producto</th>
@@ -100,16 +102,14 @@
                 </table>
             </div>
         {% endif %}
-        <div class="black-bar"></div>
-
-        <h2 class="text-center">[Entretenimiento]</h2>
-        <div class="black-bar"></div>
+        
         {% if productos_entretenimiento %}
+        <div class="black-bar"></div>
             <h3 class="mt-4">Productos de Entretenimiento:</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="text-warning" style="background-color: #383434;">
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Nombre Producto</th>
@@ -145,10 +145,11 @@
                 </table>
             </div>
         {% endif %}
-        <div class="black-bar"></div>
 
         {% if error %}
             <p class="mt-4" style="color: red;">{{ error }}</p>
         {% endif %}
     </div>
+        
+    <div class="black-bar"></div>
 {% endblock %}
