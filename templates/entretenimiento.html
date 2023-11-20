@@ -73,10 +73,11 @@
                                     <div class="modal-header justify-content-end border-0">
                                         <button type="button" class="btn-close text-white" style="border: 0; background-color: #00000000; font-size: 30px;" data-dismiss="modal" aria-label="Close">x</button>
                                   </div>
-                                  <img src="{{ url_for('static', path='imagenes/Netflix icon.png') }}"  alt="Imagen 6" style="width: 150px ">
+                                  <img src="{{ url_for('static', path='imagenes/Netflix icon.png') }}"  alt="Imagen 6" style="width: 150px;">
                                   <p class="text-white align-text-center">4 pantallas simultáneas por <span class="text-danger font-weight-bold">$35.000</span></p>
                                   <div class="modal-footer border-0">
-                                    <a class="btn btn-outline-danger btn-block" type="submit" href="/comprar?id=Netflix">COMPRAR</a>
+                                    <a href="/comprarP?plan_referencia=Netflix" class="btn btn-outline-danger btn-block" type="submit">CONTRATAR</a>
+                                    <a href="/nuevo_contrato?plan_referencia=Netflix" class="btn btn-outline-danger btn-block">Añadir al contrato</a>
                                   </div>
                                 </div>
                             </div>
@@ -104,7 +105,8 @@
                                   <img src="{{ url_for('static', path='imagenes/disney+.png') }}"  alt="Imagen 6" style="width: 150px ">
                                   <p class="text-white align-text-center">4 pantallas simultáneas por <span class="text-info font-weight-bold">$30.000</span></p>
                                   <div class="modal-footer border-0">
-                                    <a class="btn btn-outline-light my-2 my-sm-0 btn-block" type="submit" href="/comprar?id=Disney">COMPRAR</a>
+                                    <a href="/comprarP?plan_referencia=Disney+" class="btn btn-outline-info btn-block" type="submit">CONTRATAR</a>
+                                    <a href="/nuevo_contrato?plan_referencia=Disney+" class="btn btn-outline-info btn-block">Añadir al contrato</a>
                                   </div>
                                 </div>
                                 </div>
@@ -133,7 +135,8 @@
                                   <img src="{{ url_for('static', path='imagenes/hbomax.png') }}"  alt="Imagen 6" style="width: 150px; scale: 1.40">
                                   <p class="text-white align-text-center">¡Vive el Entretenimiento!</p>
                                   <div class="modal-footer border-0">
-                                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Más información</button>
+                                    <a href="/comprarP?plan_referencia=HBO%20Max" class="btn btn-outline-light btn-block" type="submit">CONTRATAR</a>
+                                    <a href="/nuevo_contrato?plan_referencia=HBO%20Max" class="btn btn-outline-light btn-block">Añadir al contrato</a>
                                   </div>
                                 </div>
                             </div>
@@ -161,7 +164,8 @@
                                   <img src="{{ url_for('static', path='imagenes/Paramount_Plus.webp') }}"  alt="Imagen 6" style="width: 150px ">
                                   <p class="text-dark align-text-center">¿Qué vas a ver primero?</p>
                                   <div class="modal-footer border-0">
-                                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Más información</button>
+                                    <a href="/comprarP?plan_referencia=Paramount" class="btn btn-outline-primary btn-block" type="submit">CONTRATAR</a>
+                                    <a href="/nuevo_contrato?plan_referencia=Paramount" class="btn btn-outline-primary btn-block">Añadir al contrato</a>
                                   </div>
                                   </div>
                                 </div>
@@ -189,7 +193,8 @@
                                   <img src="{{ url_for('static', path='imagenes/Prime_Video.png') }}"  alt="Imagen 6" style="width: 200px ">
                                   <p class="text-white align-text-center">Disfruta de miles de series populares y películas exclusivas.</p>
                                   <div class="modal-footer border-0">
-                                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Más información</button>
+                                    <a href="/comprarP?plan_referencia=PrimeVideo" class="btn btn-outline-info btn-block" type="submit">CONTRATAR</a>
+                                    <a href="/nuevo_contrato?plan_referencia=PrimeVideo" class="btn btn-outline-info btn-block">Añadir al contrato</a>
                                   </div>
                                 </div>
                             </div>
