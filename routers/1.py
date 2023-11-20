@@ -23,14 +23,24 @@ try:
 
     # Añadir la columna "petición" a la tabla "Familiar"
     query_add_peticion_column_familiar = """
-    CREATE TABLE Administradores (
-    id SERIAL PRIMARY KEY,
-    codigo VARCHAR(255) NOT NULL,
-    contraseña VARCHAR(255) NOT NULL
-    );
-
+    ALTER TABLE Familiar
+    ADD COLUMN peticion TEXT;
     """
     cursor.execute(query_add_peticion_column_familiar)
+
+    # Añadir la columna "petición" a la tabla "Internet"
+    query_add_peticion_column_internet = """
+    ALTER TABLE Internet
+    ADD COLUMN peticion TEXT;
+    """
+    cursor.execute(query_add_peticion_column_internet)
+
+    # Añadir la columna "petición" a la tabla "Entretenimiento"
+    query_add_peticion_column_entretenimiento = """
+    ALTER TABLE Entretenimiento
+    ADD COLUMN peticion TEXT;
+    """
+    cursor.execute(query_add_peticion_column_entretenimiento)
 
     # Confirmar la transacción
     connection.commit()
@@ -38,7 +48,7 @@ try:
     # Cerrar el cursor y la conexión
     cursor.close()
     connection.close()
-    print("todo correcto")
+    print("Columna 'petición' añadida correctamente a las tablas 'Familiar', 'Internet' y 'Entretenimiento'")
 
 except Exception as e:
     print(f"Error al realizar la consulta: {e}")

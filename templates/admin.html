@@ -14,6 +14,7 @@
                         <th>Fecha Expiración</th>
                         <th>Estado Cuenta</th>
                         <th>Petición</th>
+                        <th>confirmar</th>
                     </tr>
                 </thead>            
         <tbody>
@@ -26,7 +27,15 @@
                     <td>{{ familia[4] }}</td>
                     <td>{{ familia[5] }}</td>
                     <td>{{ familia[6] }}</td>
+                    <td>
+                        {% if familia[5] == 'Pendiente' %}
+                            <a href="/cancelar1?id_familiar={{ familia[0] }}" class="btn btn-danger btn-sm" onclick="return actualizarPagina()">Cancelar</a>
+                        {% elif familia[5] == 'Activando' %}
+                            <a href="/activar1?id_familiar={{ familia[0] }}" class="btn btn-success btn-sm" onclick="return actualizarPagina()">Activar</a>
+                        {% endif %}
+                    </td>
                 </tr>
+
             {% endfor %}
         </tbody>
     </table>
@@ -45,6 +54,7 @@
                         <th>Fecha Expiración</th>
                         <th>Estado Cuenta</th>
                         <th>Petición</th>
+                        <th>confirmar</th>
                     </tr>
                 </thead>            
         <tbody>
@@ -57,6 +67,13 @@
                     <td>{{ familia[4] }}</td>
                     <td>{{ familia[5] }}</td>
                     <td>{{ familia[6] }}</td>
+                    <td>
+                        {% if familia[5] == 'Pendiente' %}
+                            <a href="/cancelar2?id_familiar={{ familia[0] }}" class="btn btn-danger btn-sm" onclick="return actualizarPagina()">Cancelar</a>
+                        {% elif familia[5] == 'Activando' %}
+                            <a href="/activar2?id_familiar={{ familia[0] }}" class="btn btn-success btn-sm" onclick="return actualizarPagina()">Activar</a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -75,6 +92,7 @@
                         <th>Fecha Expiración</th>
                         <th>Estado Cuenta</th>
                         <th>Petición</th>
+                        <th>confirmar</th>
                     </tr>
                 </thead>            
         <tbody>
@@ -87,9 +105,23 @@
                     <td>{{ familia[4] }}</td>
                     <td>{{ familia[5] }}</td>
                     <td>{{ familia[6] }}</td>
+                    <td>
+                        {% if familia[5] == 'Pendiente' %}
+                            <a href="/cancelar3?id_familiar={{ familia[0] }}" class="btn btn-danger btn-sm" onclick="return actualizarPagina()">Cancelar</a>
+                        {% elif familia[5] == 'Activando' %}
+                            <a href="/activar3?id_familiar={{ familia[0] }}" class="btn btn-success btn-sm" onclick="return actualizarPagina()">Activar</a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
+<script>
+    function actualizarPagina() {
+        location.reload();
+        return true;
+    }
+</script>
 {% endblock %}
