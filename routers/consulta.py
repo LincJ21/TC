@@ -20,4 +20,4 @@ async def consulta(request: Request, cc: str = Form(...)):
         )
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al realizar la consulta: {e}")
+        return templates.TemplateResponse("error_page.html", {"request": request})

@@ -36,27 +36,33 @@ async def iniciar_sesion_administrador(request: Request, codigo: str = Form(...)
     except HTTPException as e:
         raise e
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error interno del servidor: {e}")
+        return templates.TemplateResponse("error_page.html", {"request": request})
 
 async def Tabla(request: Request):
     try:
         with psycopg2.connect(**db_params) as connection, connection.cursor() as cursor:
-            query_familia = "SELECT * FROM familiar"
+            # Filtro para estado_cuenta distinto de "Cancelado" y "Activo"
+            filtro_estado_cuenta = "estado_cuenta NOT IN ('Cancelado', 'Activo')"
+
+            # Consulta para la tabla familiar
+            query_familia = f"SELECT * FROM familiar WHERE {filtro_estado_cuenta}"
             cursor.execute(query_familia)
             datos_familia = cursor.fetchall()
 
-            query_internet = "SELECT * FROM internet"
+            # Consulta para la tabla internet
+            query_internet = f"SELECT * FROM internet WHERE {filtro_estado_cuenta}"
             cursor.execute(query_internet)
             datos_internet = cursor.fetchall()
 
-            query_entretenimiento = "SELECT * FROM entretenimiento"
+            # Consulta para la tabla entretenimiento
+            query_entretenimiento = f"SELECT * FROM entretenimiento WHERE {filtro_estado_cuenta}"
             cursor.execute(query_entretenimiento)
             datos_entretenimiento = cursor.fetchall()
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error al obtener datos: {e}")
-
+        return templates.TemplateResponse("error_page.html", {"request": request})
     return templates.TemplateResponse(
         "admin.html",
         {"request": request, "datos_familia": datos_familia, "datos_internet": datos_internet, "datos_entretenimiento": datos_entretenimiento}
     )
+

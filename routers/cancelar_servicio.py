@@ -53,7 +53,7 @@ async def cancelar_servicio(request: Request, id_producto: int = Form(...), cont
 
         except Exception as e:
             print(f"Error al cancelar el servicio: {e}")
-            raise HTTPException(status_code=500, detail="Error al cancelar el servicio")
+            return templates.TemplateResponse("error_page.html", {"request": request})
 
         finally:
             # Cerrar el cursor y la conexión

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            color: #FF0000;
+        }
+        p {
+            color: #333333;
+        }
+        .home-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color:#FFE03D;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Ups! Algo salió mal.</h1>
+    <p>Nos disculpamos por los inconvenientes. Estamos trabajando para resolver el problema.</p>
+    <a href="/home" class="home-link">Home</a>
+</body>
+</html>
+{% endblock %}

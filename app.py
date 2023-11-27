@@ -237,6 +237,9 @@ def cobertura(request: Request):
 @app.get("/inicio_sesion_admin", response_class=HTMLResponse)
 def inicio_sesion_admin(request: Request):
     return templates.TemplateResponse('inicio_sesion_admin.html', {"request": request})
+@app.get("/error", response_class=HTMLResponse)
+def error(request: Request):
+    return templates.TemplateResponse('error.html', {"request":request})
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
